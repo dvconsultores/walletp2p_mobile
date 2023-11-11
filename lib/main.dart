@@ -90,7 +90,7 @@ class _AppState extends State<App> {
                 return MaterialApp.router(
                   scaffoldMessengerKey: globalScaffoldMessengerKey,
                   locale: value.locale,
-                  debugShowCheckedModeBanner: true,
+                  debugShowCheckedModeBanner: false,
                   title: AppName.capitalize.value,
                   theme: ThemeApp.of(context), // * Theme switcher
                   localizationsDelegates:

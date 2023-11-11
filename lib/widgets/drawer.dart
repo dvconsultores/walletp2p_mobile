@@ -7,9 +7,13 @@ class AppDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const AppScaffold(
+        color: Color.fromRGBO(229, 231, 235, 1),
         child: ScaffoldBody(
+            bgImg: 'assets/images/circle-drawer.png',
+            bgImgTop: -40,
+            bgImgLeft: 6,
             body: Column(children: [
-      Text("data"),
-    ])));
+              Text("data"),
+            ])));
   }
 }
