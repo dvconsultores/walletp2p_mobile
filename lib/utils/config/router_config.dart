@@ -9,13 +9,19 @@ import 'package:wallet_p2p/routes/pick_username_page.dart';
 import 'package:wallet_p2p/routes/select_account_page.dart';
 import 'package:wallet_p2p/routes/staking_page.dart';
 import 'package:wallet_p2p/utils/helper_widgets/custom_transition_wrapper.dart';
+import 'package:wallet_p2p/utils/helper_widgets/double_back_to_close_widget.dart';
 import 'package:wallet_p2p/utils/services/local_data/secure_storage_service.dart';
 import 'package:go_router/go_router.dart';
 
-Page _pageBuilder(Widget child) => CustomTransitionPage(
+Page _topLevelPageBuilder(Widget child) => _pageBuilder(DoubleBackToCloseWidget(
+      snackBarMessage: "Press again to leave",
       child: child,
+    ));
+
+Page _pageBuilder(Widget child) => CustomTransitionPage(
       transitionsBuilder: (context, animation, secondaryAnimation, child) =>
           CustomTransitionWrapper(animation: animation, child: child),
+      child: child,
     );
 
 final GoRouter router = GoRouter(
@@ -39,7 +45,8 @@ final GoRouter router = GoRouter(
       GoRoute(
           path: '/auth',
           name: 'login',
-          pageBuilder: (context, state) => _pageBuilder(const LogInPage()),
+          pageBuilder: (context, state) =>
+              _topLevelPageBuilder(const LogInPage()),
           routes: [
             GoRoute(
               path: 'select-account',
@@ -77,7 +84,8 @@ final GoRouter router = GoRouter(
       GoRoute(
           path: '/',
           name: 'home',
-          pageBuilder: (context, state) => _pageBuilder(const HomePage()),
+          pageBuilder: (context, state) =>
+              _topLevelPageBuilder(const HomePage()),
           routes: [
             GoRoute(
               path: 'staking',
