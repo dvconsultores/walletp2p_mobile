@@ -189,9 +189,10 @@ class CustomTitle extends StatelessWidget {
                       right: bottomTextPaddingRight ?? 0),
                   child: Text(bottomText!, style: bigTextStyle),
                 )),
-          const Gap(16).column,
-          if (desc.hasValue)
+          if (desc.hasValue) ...[
+            const Gap(16).column,
             Text(desc!, textAlign: TextAlign.center, style: descStyle),
+          ]
         ]));
   }
 }

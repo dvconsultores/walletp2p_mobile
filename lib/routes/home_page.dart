@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/general/functions.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
@@ -17,22 +16,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final floatingButtons = [
       {
-        "name": "SEND",
+        "label": "SEND",
         "icon": const Icon(Icons.arrow_upward_rounded),
         "action": () {},
       },
       {
-        "name": "RECEIVE",
+        "label": "RECEIVE",
         "icon": const Icon(Icons.arrow_downward_rounded),
         "action": () {},
       },
       {
-        "name": "TOP UP",
+        "label": "TOP UP",
         "icon": const Icon(Icons.add),
         "action": () {},
       },
       {
-        "name": "SWAP",
+        "label": "SWAP",
         "icon": const Icon(Icons.swap_horiz_rounded),
         "action": () {},
       },
@@ -139,7 +138,7 @@ class HomePage extends StatelessWidget {
                         ),
                         const Gap(8).column,
                         Text(
-                          floatingButtons[i]['name'] as String,
+                          floatingButtons[i]['label'] as String,
                           style: TextStyle(
                             fontWeight: FontWeight.w700,
                             fontFamily: FontFamily.karla("700"),
@@ -192,13 +191,12 @@ class HomePage extends StatelessWidget {
                           child: Button(
                             width: 176,
                             text: "EXPLORE APPS",
-                            onPressed: () => context.goNamed("login"),
+                            onPressed: () {},
                           )),
                     ),
                   ]),
             ),
             const Gap(46).column,
-            // const Gap(81).column,
             Stack(
               children: [
                 Positioned.fill(

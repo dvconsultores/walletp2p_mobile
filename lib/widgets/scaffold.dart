@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/responsive_layout.dart';
 
@@ -49,6 +50,7 @@ class _BodyBackgroundStyled extends StatelessWidget {
     required this.bgImg,
     required this.showBgDots,
     required this.bgImgLeft,
+    required this.heroTag,
   });
   final EdgeInsetsGeometry? padding;
   final Color? color;
@@ -57,10 +59,16 @@ class _BodyBackgroundStyled extends StatelessWidget {
   final double? bgImgTop;
   final double? bgImgLeft;
   final bool showBgDots;
+  final String? heroTag;
   final Widget child;
 
   @override
   Widget build(BuildContext context) {
+    final bgImgWidget = bgImg?.contains('.svg') ?? true
+        ? SvgPicture.asset(bgImg ?? 'assets/images/circle.svg',
+            fit: BoxFit.cover)
+        : Image.asset(bgImg ?? 'assets/images/circle.png', fit: BoxFit.cover);
+
     final widget = Stack(alignment: Alignment.topCenter, children: [
       if (showBgDots)
         Positioned(
@@ -75,11 +83,12 @@ class _BodyBackgroundStyled extends StatelessWidget {
       Positioned(
         top: bgImgTop ?? 109,
         left: bgImgLeft,
-        child: bgImg?.contains('.svg') ?? true
-            ? SvgPicture.asset(bgImg ?? 'assets/images/circle.svg',
-                fit: BoxFit.cover)
-            : Image.asset(bgImg ?? 'assets/images/circle.png',
-                fit: BoxFit.cover),
+        child: heroTag.hasValue
+            ? Hero(
+                tag: heroTag!,
+                child: bgImgWidget,
+              )
+            : bgImgWidget,
       ),
       Container(
         color: color,
@@ -203,6 +212,7 @@ class ScaffoldBody extends StatelessWidget {
     this.bgImgTop,
     this.showBgDots = false,
     this.bgImgLeft,
+    this.heroTag,
   });
   final Widget body;
   final EdgeInsetsGeometry? padding;
@@ -212,6 +222,7 @@ class ScaffoldBody extends StatelessWidget {
   final double? bgImgTop;
   final bool showBgDots;
   final double? bgImgLeft;
+  final String? heroTag;
 
   @override
   Widget build(BuildContext context) => _BodyBackgroundStyled(
@@ -222,6 +233,7 @@ class ScaffoldBody extends StatelessWidget {
         bgImgTop: bgImgTop,
         showBgDots: showBgDots,
         bgImgLeft: bgImgLeft,
+        heroTag: heroTag,
         child: body,
       );
 
@@ -238,6 +250,7 @@ class ScaffoldBody extends StatelessWidget {
     double? bgImgTop,
     bool showBgDots = false,
     double? bgImgLeft,
+    String? heroTag,
   }) =>
       _ScaffoldBodyResponsive(
         color: color,
@@ -251,6 +264,7 @@ class ScaffoldBody extends StatelessWidget {
         bgImgTop: bgImgTop,
         showBgDots: showBgDots,
         bgImgLeft: bgImgLeft,
+        heroTag: heroTag,
       );
 }
 
@@ -268,6 +282,7 @@ class _ScaffoldBodyResponsive extends StatelessWidget {
     required this.bgImgTop,
     required this.showBgDots,
     required this.bgImgLeft,
+    required this.heroTag,
   });
   final Widget? Function(BuildContext context, BoxConstraints constraints)?
       mobile;
@@ -283,6 +298,7 @@ class _ScaffoldBodyResponsive extends StatelessWidget {
   final double? bgImgTop;
   final bool showBgDots;
   final double? bgImgLeft;
+  final String? heroTag;
 
   @override
   Widget build(BuildContext context) => _BodyBackgroundStyled(
@@ -293,6 +309,7 @@ class _ScaffoldBodyResponsive extends StatelessWidget {
         bgImgTop: bgImgTop,
         bgImgLeft: bgImgLeft,
         showBgDots: showBgDots,
+        heroTag: heroTag,
         child: ResponsiveLayout(
           mobile: mobile,
           tablet: tablet,
