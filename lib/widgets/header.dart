@@ -16,6 +16,7 @@ class AppHeader extends StatelessWidget {
     this.showArrow = true,
     this.width,
     this.desc,
+    this.descAlign,
     this.topText,
     this.bottomText,
     this.topTextAlign,
@@ -38,6 +39,7 @@ class AppHeader extends StatelessWidget {
   final double? bottomTextPaddingLeft;
   final double? bottomTextPaddingRight;
   final String? desc;
+  final AlignmentGeometry? descAlign;
   final Widget? leadingWidget;
   final bool showOptions;
 
@@ -120,6 +122,7 @@ class AppHeader extends StatelessWidget {
             bottomTextPaddingLeft: bottomTextPaddingLeft,
             bottomTextPaddingRight: bottomTextPaddingRight,
             desc: desc,
+            descAlign: descAlign,
           ),
         ]
       ]),
@@ -141,7 +144,7 @@ class CustomTitle extends StatelessWidget {
     this.bottomTextPaddingLeft,
     this.bottomTextPaddingRight,
     this.desc,
-    this.descStyle,
+    this.descAlign,
   });
 
   final double? width;
@@ -155,7 +158,7 @@ class CustomTitle extends StatelessWidget {
   final double? bottomTextPaddingLeft;
   final double? bottomTextPaddingRight;
   final String? desc;
-  final TextStyle? descStyle;
+  final AlignmentGeometry? descAlign;
 
   @override
   Widget build(BuildContext context) {
@@ -191,7 +194,10 @@ class CustomTitle extends StatelessWidget {
                 )),
           if (desc.hasValue) ...[
             const Gap(16).column,
-            Text(desc!, textAlign: TextAlign.center, style: descStyle),
+            Align(
+              alignment: descAlign ?? Alignment.center,
+              child: Text(desc!, style: descStyle),
+            ),
           ]
         ]));
   }

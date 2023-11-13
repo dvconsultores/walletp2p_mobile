@@ -43,9 +43,9 @@ class _LogInPageState extends State<LogInPage> {
             desc: "SIGN IN OR REGISTER TO JOIN THE FUN",
           ),
           const Gap(309).column,
-          const InputField(
-            hintText: "EMAIL",
+          InputField.sizedBox(
             height: 45,
+            hintText: "EMAIL",
           ),
           const Gap(15).column,
           Button(

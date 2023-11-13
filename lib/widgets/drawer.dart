@@ -46,12 +46,18 @@ class _AppDrawerState extends State<AppDrawer> {
       {
         "label": "EXPLORE",
         "icon": const Icon(Icons.explore_outlined, size: 22),
-        "action": () {},
+        "action": () {
+          Navigator.pop(context);
+          context.goNamed("explore");
+        },
       },
       {
         "label": "ACCOUNT",
         "icon": const Icon(Icons.person_2_outlined, size: 22),
-        "action": () {},
+        "action": () {
+          Navigator.pop(context);
+          context.goNamed("accountDetails");
+        },
       },
       {
         "label": "SUPPORT",
@@ -154,6 +160,7 @@ class _AppDrawerState extends State<AppDrawer> {
                 controller: textController,
                 textAlign: TextAlign.end,
                 readOnly: true,
+                focusedBorderColor: Theme.of(context).colorScheme.outline,
                 textStyle: TextStyle(
                   fontSize: 16,
                   color: ThemeApp.colors(context).primary,

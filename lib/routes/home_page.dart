@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/general/functions.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
@@ -191,133 +192,130 @@ class HomePage extends StatelessWidget {
                           child: Button(
                             width: 176,
                             text: "EXPLORE APPS",
-                            onPressed: () {},
+                            onPressed: () => context.goNamed("explore"),
                           )),
                     ),
                   ]),
             ),
             const Gap(46).column,
-            Stack(
-              children: [
-                Positioned.fill(
-                    child: Transform.scale(
-                        scaleX: 5,
-                        child: const ColoredBox(
-                          color: Color.fromRGBO(209, 196, 232, .65),
-                        ))),
-                Column(children: [
-                  const Gap(46).column,
-                  const CustomTitle(
-                    width: 243,
-                    topText: "RECENT",
-                    topTextAlign: Alignment.centerLeft,
-                    bottomText: "ACTIVITY",
-                    bottomTextAlign: Alignment.centerRight,
-                  ),
-                  const Gap(18).column,
-                  for (final item in recentActivities) ...[
-                    ButtonAspect(
-                      bgColor: Colors.transparent,
-                      boxShadow: const [],
-                      leadingGap: 13,
-                      trailingSpacer: true,
-                      leading: Button.icon(
-                        size: 40,
-                        icon: Icon(
-                            item['type'] == "receive"
-                                ? Icons.arrow_downward_rounded
-                                : item['type'] == "access"
-                                    ? Icons.key_rounded
-                                    : Icons.person_2_outlined,
-                            color: ThemeApp.colors(context).primary),
-                        bgColor: Colors.white,
-                        boxShadow: [],
-                        onPressed: () {},
-                      ),
-                      content: buildWidget(() {
-                        TextSpan ts(String text) => TextSpan(
-                            text: text,
-                            style: TextStyle(
-                              color: ThemeApp.colors(context).textVariant,
-                              fontWeight: FontWeight.w500,
-                              fontFamily: FontFamily.karla("500"),
-                            ));
-                        TextSpan ts2(String text) => TextSpan(
-                            text: text,
-                            style: ts(text).style?.copyWith(
-                                  fontWeight: FontWeight.w700,
-                                  fontFamily: FontFamily.karla("700"),
-                                ));
-
-                        return Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text(
-                                item['type'] == "receive"
-                                    ? "RECEIVED ${item['coin']}"
-                                    : item['type'] == "access"
-                                        ? "ACCESS KEY"
-                                        : "NEW ACCOUNT CREATED",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge
-                                    ?.copyWith(
-                                      color:
-                                          ThemeApp.colors(context).textVariant,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: FontFamily.karla("700"),
-                                    ),
-                              ),
-                              Text.rich(TextSpan(
-                                  children: item['type'] == "receive"
-                                      ? [
-                                          ts("from "),
-                                          ts2(item['coin'] as String),
-                                        ]
-                                      : item['type'] == "access"
-                                          ? [
-                                              ts("for "),
-                                              ts2(item['user'] as String),
-                                            ]
-                                          : [
-                                              ts("Account "),
-                                              ts2(item['user'] as String),
-                                            ])),
-                            ]);
-                      }),
-                      trailing: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.end,
-                          children: [
-                            Text("+${item['amount']} ${item['coin']}",
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .bodyLarge
-                                    ?.copyWith(
-                                      color: ThemeApp.colors(context).primary,
-                                      fontWeight: FontWeight.w700,
-                                      fontFamily: FontFamily.karla("700"),
-                                    )),
-                            Text("${item['ago']} ago",
-                                style: TextStyle(
-                                  color: ThemeApp.colors(context).textVariant,
-                                  fontWeight: FontWeight.w500,
-                                  fontFamily: FontFamily.karla("500"),
-                                )),
-                          ]),
+            Stack(children: [
+              Positioned.fill(
+                  child: Transform.scale(
+                      scaleX: 5,
+                      child: const ColoredBox(
+                        color: Color.fromRGBO(209, 196, 232, .65),
+                      ))),
+              Column(children: [
+                const Gap(46).column,
+                const CustomTitle(
+                  width: 243,
+                  topText: "RECENT",
+                  topTextAlign: Alignment.centerLeft,
+                  bottomText: "ACTIVITY",
+                  bottomTextAlign: Alignment.centerRight,
+                ),
+                const Gap(18).column,
+                for (final item in recentActivities) ...[
+                  ButtonAspect(
+                    bgColor: Colors.transparent,
+                    boxShadow: const [],
+                    leadingGap: 13,
+                    trailingSpacer: true,
+                    leading: Button.icon(
+                      size: 40,
+                      icon: Icon(
+                          item['type'] == "receive"
+                              ? Icons.arrow_downward_rounded
+                              : item['type'] == "access"
+                                  ? Icons.key_rounded
+                                  : Icons.person_2_outlined,
+                          color: ThemeApp.colors(context).primary),
+                      bgColor: Colors.white,
+                      boxShadow: [],
+                      onPressed: () {},
                     ),
-                    const Gap(18).column
-                  ],
-                  const Gap(5).column,
-                  Button(
-                    text: "VIEW ALL",
-                    onPressed: () {},
+                    content: buildWidget(() {
+                      TextSpan ts(String text) => TextSpan(
+                          text: text,
+                          style: TextStyle(
+                            color: ThemeApp.colors(context).textVariant,
+                            fontWeight: FontWeight.w500,
+                            fontFamily: FontFamily.karla("500"),
+                          ));
+                      TextSpan ts2(String text) => TextSpan(
+                          text: text,
+                          style: ts(text).style?.copyWith(
+                                fontWeight: FontWeight.w700,
+                                fontFamily: FontFamily.karla("700"),
+                              ));
+
+                      return Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              item['type'] == "receive"
+                                  ? "RECEIVED ${item['coin']}"
+                                  : item['type'] == "access"
+                                      ? "ACCESS KEY"
+                                      : "NEW ACCOUNT CREATED",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    color: ThemeApp.colors(context).textVariant,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: FontFamily.karla("700"),
+                                  ),
+                            ),
+                            Text.rich(TextSpan(
+                                children: item['type'] == "receive"
+                                    ? [
+                                        ts("from "),
+                                        ts2(item['coin'] as String),
+                                      ]
+                                    : item['type'] == "access"
+                                        ? [
+                                            ts("for "),
+                                            ts2(item['user'] as String),
+                                          ]
+                                        : [
+                                            ts("Account "),
+                                            ts2(item['user'] as String),
+                                          ])),
+                          ]);
+                    }),
+                    trailing: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.end,
+                        children: [
+                          Text("+${item['amount']} ${item['coin']}",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyLarge
+                                  ?.copyWith(
+                                    color: ThemeApp.colors(context).primary,
+                                    fontWeight: FontWeight.w700,
+                                    fontFamily: FontFamily.karla("700"),
+                                  )),
+                          Text("${item['ago']} ago",
+                              style: TextStyle(
+                                color: ThemeApp.colors(context).textVariant,
+                                fontWeight: FontWeight.w500,
+                                fontFamily: FontFamily.karla("500"),
+                              )),
+                        ]),
                   ),
-                  const AppFooter(padding: EdgeInsets.only(top: 25, bottom: 33))
-                ]),
-              ],
-            ),
+                  const Gap(18).column
+                ],
+                const Gap(5).column,
+                Button(
+                  text: "VIEW ALL",
+                  onPressed: () {},
+                ),
+                const AppFooter(padding: EdgeInsets.only(top: 25, bottom: 33))
+              ]),
+            ]),
           ])),
     );
   }

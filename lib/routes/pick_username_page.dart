@@ -28,9 +28,9 @@ class PickUsernamePage extends StatelessWidget {
             desc: "THIS WILL BE YOUR LEGIBLE WALLET ADDRESS",
           ),
           const Gap(47).column,
-          InputField(
-            hintText: "USERNAME / WALLET",
+          InputField.sizedBox(
             height: 45,
+            hintText: "USERNAME / WALLET",
             hintStyle: TextStyle(
               fontSize: 10,
               color: ThemeApp.colors(context).text,

@@ -1,5 +1,7 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:wallet_p2p/routes/account_details_page.dart';
+import 'package:wallet_p2p/routes/explore_page.dart';
 import 'package:wallet_p2p/routes/home_page.dart';
 import 'package:wallet_p2p/routes/log_in_page.dart';
 import 'package:wallet_p2p/routes/passphrase_sign_in_page.dart';
@@ -92,6 +94,18 @@ final GoRouter router = GoRouter(
               name: 'staking',
               pageBuilder: (context, state) =>
                   _pageBuilder(const StakingPage()),
+            ),
+            GoRoute(
+              path: 'explore',
+              name: 'explore',
+              pageBuilder: (context, state) =>
+                  _pageBuilder(const ExplorePage()),
+            ),
+            GoRoute(
+              path: 'account-details',
+              name: 'accountDetails',
+              pageBuilder: (context, state) =>
+                  _pageBuilder(const AccountDetailsPage()),
             ),
           ]),
     ]);

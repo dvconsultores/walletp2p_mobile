@@ -24,9 +24,9 @@ class PassphraseSigInPage extends StatelessWidget {
           const Gap(33).column,
           Expanded(
             child: ListView.separated(
-              itemBuilder: (context, index) => InputField(
-                  hintText: "ENTER WORD #${index + 1}",
+              itemBuilder: (context, index) => InputField.sizedBox(
                   height: 45,
+                  hintText: "ENTER WORD #${index + 1}",
                   hintStyle: TextStyle(
                     fontSize: 10,
                     color: ThemeApp.colors(context).text,

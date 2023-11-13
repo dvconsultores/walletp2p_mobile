@@ -25,9 +25,9 @@ class PassphraseWordPage extends StatelessWidget {
                 "ENTER THE FOLLOWING WORD FROM YOUR RECOVERY PHRASE TO COMPLETE THE SETUP PROCESS",
           ),
           const Gap(77).column,
-          InputField(
-            hintText: "ENTER WORD #12",
+          InputField.sizedBox(
             height: 45,
+            hintText: "ENTER WORD #12",
             hintStyle: TextStyle(
               fontSize: 10,
               color: ThemeApp.colors(context).text,
