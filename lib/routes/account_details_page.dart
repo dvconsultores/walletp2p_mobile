@@ -1,19 +1,147 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:wallet_p2p/utils/config/theme.dart';
+import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
+import 'package:wallet_p2p/widgets/button.dart';
+import 'package:wallet_p2p/widgets/custom_card.dart';
 import 'package:wallet_p2p/widgets/header.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
 
-class AccountDetailsPage extends StatelessWidget {
+class AccountDetailsPage extends StatefulWidget {
   const AccountDetailsPage({super.key});
 
   @override
+  State<AccountDetailsPage> createState() => _AccountDetailsPageState();
+}
+
+class _AccountDetailsPageState extends State<AccountDetailsPage> {
+  final balanceData = [
+    {
+      "field": "RESERVED FOR STORAGE",
+      "value": 0.000264,
+    },
+    {
+      "field": "RESERVED FOR TRANSACTIONS",
+      "value": 0.005,
+    },
+    {
+      "field": "AVAILABLE BALANCE",
+      "value": 0.98275,
+    },
+  ];
+
+  @override
   Widget build(BuildContext context) {
+    final titleTextStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
+          color: ThemeApp.colors(context).textVariant,
+          letterSpacing: 1,
+          fontWeight: FontWeight.w700,
+          fontFamily: FontFamily.karla("700"),
+        );
+
+    final bodyTextStyle = Theme.of(context).textTheme.bodyLarge?.copyWith(
+          color: ThemeApp.colors(context).textVariant,
+          fontWeight: FontWeight.w500,
+          fontFamily: FontFamily.karla("500"),
+        );
+
     return AppScaffold(
         child: ScaffoldBody(
+      scrollable: true,
       body: Column(children: [
-        const AppHeader(),
-        const Gap(20).column,
-        const Text("data"),
+        const AppHeader(
+          width: 301,
+          topText: "ACCOUNT",
+          topTextAlign: Alignment.centerLeft,
+          bottomText: "DETAILS",
+          bottomTextAlign: Alignment.centerRight,
+        ),
+        const Gap(23).column,
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Text("WALLET ID", style: titleTextStyle),
+          const Gap(12).row,
+          Row(children: [
+            Text("patriciasilvab.near",
+                style: TextStyle(
+                  fontWeight: FontWeight.w700,
+                  fontFamily: FontFamily.karla("700"),
+                )),
+            const Gap(12).row,
+            Button.icon(
+              size: 29,
+              icon: Image.asset("assets/icons/copy.png", width: 14.82),
+              onPressed: () {},
+            ),
+          ]),
+        ]),
+        const Gap(13).column,
+        Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+          Text("WALLET BALANCE", style: titleTextStyle),
+          const Gap(12).row,
+          Text.rich(
+            TextSpan(children: [
+              TextSpan(text: "0.9999996 NEAR\n", style: titleTextStyle),
+              TextSpan(text: "\$1.38", style: bodyTextStyle),
+            ]),
+            textAlign: TextAlign.end,
+          )
+        ]),
+        const Gap(16).column,
+        CustomCard(
+          width: double.maxFinite,
+          height: 168,
+          child: ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: balanceData.length,
+            separatorBuilder: (context, index) => const Gap(27).column,
+            itemBuilder: (context, index) {
+              final item = balanceData[index];
+
+              return Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(children: [
+                      SizedBox(
+                        width: 102,
+                        child: Text(
+                          item['field'] as String,
+                          style: titleTextStyle,
+                        ),
+                      ),
+                      const Gap(10).row,
+                      SvgPicture.asset("assets/icons/info-blue.svg"),
+                    ]),
+                    const Gap(10).row,
+                    Text.rich(
+                      TextSpan(children: [
+                        TextSpan(
+                            text: "${item['value']} NEAR\n",
+                            style: titleTextStyle),
+                        TextSpan(
+                            text:
+                                "\$${((item['value'] as double) * 2).maxDecimals(4)}",
+                            style: bodyTextStyle),
+                      ]),
+                      textAlign: TextAlign.end,
+                    ),
+                  ]);
+            },
+          ),
+        ),
+        const Gap(29).column,
+        const CustomTitle(
+          width: 305,
+          topText: "SECURITY &",
+          topTextAlign: Alignment.centerRight,
+          bottomText: "RECOVERY",
+          bottomTextAlign: Alignment.centerLeft,
+          desc: "MOST SECURE (RECOMMENDED)",
+          descAlign: Alignment.centerLeft,
+          descTip: "hola",
+        ),
+        const Gap(16).column,
       ]),
     ));
   }

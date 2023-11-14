@@ -10,11 +10,15 @@ class HaloIconWidget extends StatelessWidget {
     this.text,
     this.color = Colors.white,
     this.size = 42,
+    this.firstHaloSize,
+    this.secondHaloSize,
   });
   final Widget icon;
   final double size;
   final Color color;
   final String? text;
+  final double? firstHaloSize;
+  final double? secondHaloSize;
 
   @override
   Widget build(BuildContext context) {
@@ -25,15 +29,24 @@ class HaloIconWidget extends StatelessWidget {
           fontFamily: FontFamily.karla("700"),
         );
 
+    double haloSum() {
+      final haloSize = (firstHaloSize ?? 0) + (secondHaloSize ?? 0);
+
+      if (haloSize == 0) return 19;
+      return haloSize;
+    }
+
     return Column(children: [
       CustomPaint(
         painter: _CustomPainter(
           iconSize: size,
           color: color,
+          firstHaloSize: firstHaloSize,
+          secondHaloSize: secondHaloSize,
         ),
         child: SizedBox(
-          width: size + 19,
-          height: size + 19,
+          width: size + haloSum(),
+          height: size + haloSum(),
           child: Align(
             child: ClipRRect(
               borderRadius: const BorderRadius.all(Radius.circular(50)),
@@ -56,9 +69,13 @@ class _CustomPainter extends CustomPainter {
   const _CustomPainter({
     required this.color,
     required this.iconSize,
+    this.firstHaloSize,
+    this.secondHaloSize,
   });
   final Color color;
   final double iconSize;
+  final double? firstHaloSize;
+  final double? secondHaloSize;
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -75,13 +92,13 @@ class _CustomPainter extends CustomPainter {
       ..strokeWidth = 1.5;
     final haloRect = Rect.fromCircle(
       center: center,
-      radius: radius + 6,
+      radius: radius + (firstHaloSize ?? 6),
     );
     canvas.drawOval(haloRect, haloPaint);
 
     final haloRect2 = Rect.fromCircle(
       center: center,
-      radius: radius + 13,
+      radius: radius + (secondHaloSize ?? 13),
     );
     canvas.drawOval(haloRect2, haloPaint);
   }

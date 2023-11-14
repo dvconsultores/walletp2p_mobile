@@ -8,6 +8,7 @@ import 'package:wallet_p2p/utils/helper_widgets/custom_transition_wrapper.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/drawer.dart';
+import 'package:wallet_p2p/widgets/tooltip.dart';
 
 /// ? Custom Application header
 class AppHeader extends StatelessWidget {
@@ -17,6 +18,7 @@ class AppHeader extends StatelessWidget {
     this.width,
     this.desc,
     this.descAlign,
+    this.descTip,
     this.topText,
     this.bottomText,
     this.topTextAlign,
@@ -40,6 +42,7 @@ class AppHeader extends StatelessWidget {
   final double? bottomTextPaddingRight;
   final String? desc;
   final AlignmentGeometry? descAlign;
+  final String? descTip;
   final Widget? leadingWidget;
   final bool showOptions;
 
@@ -72,7 +75,7 @@ class AppHeader extends StatelessWidget {
                 icon: Image.asset("assets/icons/avatar-colored.png"),
                 bgColor: Colors.transparent,
                 boxShadow: [],
-                onPressed: () {},
+                onPressed: () => context.pushNamed("accountDetails"),
               ),
               const Gap(14).row,
               Button.icon(
@@ -123,6 +126,7 @@ class AppHeader extends StatelessWidget {
             bottomTextPaddingRight: bottomTextPaddingRight,
             desc: desc,
             descAlign: descAlign,
+            descTip: descTip,
           ),
         ]
       ]),
@@ -145,6 +149,7 @@ class CustomTitle extends StatelessWidget {
     this.bottomTextPaddingRight,
     this.desc,
     this.descAlign,
+    this.descTip,
   });
 
   final double? width;
@@ -159,6 +164,7 @@ class CustomTitle extends StatelessWidget {
   final double? bottomTextPaddingRight;
   final String? desc;
   final AlignmentGeometry? descAlign;
+  final String? descTip;
 
   @override
   Widget build(BuildContext context) {
@@ -196,7 +202,16 @@ class CustomTitle extends StatelessWidget {
             const Gap(16).column,
             Align(
               alignment: descAlign ?? Alignment.center,
-              child: Text(desc!, style: descStyle),
+              child: Row(children: [
+                Text(desc!, style: descStyle),
+                if (descTip.hasValue) ...[
+                  const Gap(8).row,
+                  AppTooltip(
+                    message: descTip,
+                    child: SvgPicture.asset("assets/icons/info-blue.svg"),
+                  )
+                ]
+              ]),
             ),
           ]
         ]));

@@ -6,6 +6,7 @@ import 'package:wallet_p2p/utils/general/functions.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/button_aspect.dart';
+import 'package:wallet_p2p/widgets/custom_card.dart';
 import 'package:wallet_p2p/widgets/footer.dart';
 import 'package:wallet_p2p/widgets/header.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
@@ -149,6 +150,7 @@ class HomePage extends StatelessWidget {
                     )
                 ]),
             const Gap(64).column,
+            // TODO missing card text over image
             SizedBox(
               width: double.maxFinite,
               child: Stack(
@@ -186,6 +188,29 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
+                    Positioned(
+                        bottom: 72,
+                        right: 0,
+                        child: CustomCard(
+                          width: 133,
+                          borderRadius:
+                              const BorderRadius.all(Radius.circular(25)),
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 18,
+                            vertical: 7,
+                          ),
+                          child: Text(
+                            "Earn, mint, and play! Discover the ecosystem of NEAR applications",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodySmall
+                                ?.copyWith(
+                                  color: ThemeApp.colors(context).textVariant,
+                                  fontWeight: FontWeight.w400,
+                                  fontFamily: FontFamily.karla("400"),
+                                ),
+                          ),
+                        )),
                     Positioned.fill(
                       child: Align(
                           alignment: Alignment.bottomCenter,
