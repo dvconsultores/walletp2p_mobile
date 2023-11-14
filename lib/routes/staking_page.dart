@@ -9,6 +9,7 @@ import 'package:wallet_p2p/widgets/custom_card.dart';
 import 'package:wallet_p2p/widgets/footer.dart';
 import 'package:wallet_p2p/widgets/header.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
+import 'package:wallet_p2p/widgets/tooltip.dart';
 
 class StakingPage extends StatelessWidget {
   const StakingPage({super.key});
@@ -126,8 +127,13 @@ class StakingPage extends StatelessWidget {
                                   fontWeight: FontWeight.w700,
                                   fontFamily: FontFamily.karla("700"),
                                 ),
-                        trailing: SvgPicture.asset("assets/icons/info-blue.svg",
-                            width: 20),
+                        trailing: AppTooltip(
+                          message: "",
+                          child: SvgPicture.asset(
+                            "assets/icons/info-blue.svg",
+                            width: 20,
+                          ),
+                        ),
                       ),
                       const Gap(10).row,
                       Column(

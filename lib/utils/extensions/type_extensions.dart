@@ -6,7 +6,6 @@ import 'package:csv/csv.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:wallet_p2p/utils/config/config.dart';
-import 'package:wallet_p2p/utils/general/functions.dart';
 import 'package:wallet_p2p/utils/services/local_data/app_env.dart';
 import 'package:gallery_saver/gallery_saver.dart';
 import 'package:collection/collection.dart';
@@ -15,6 +14,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:permission_handler/permission_handler.dart';
 import 'package:screenshot/screenshot.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:wallet_p2p/widgets/snackbar.dart';
 
 abstract class DefaultModel<T> {
   Iterable get values;
@@ -537,14 +537,16 @@ extension StringExtension on String {
       split(" ").map((str) => str.toCapitalize()).join(" ");
 
   /// Copy text from `string` to clipboard.
-  void copyToClipboard({String? message, Duration? messageDuration}) {
+  void copyToClipboard({
+    String? message,
+    Duration? messageDuration = const Duration(seconds: 3),
+  }) {
     Clipboard.setData(ClipboardData(text: this))
-        .then((value) => message.isExist
+        .then((value) => message.hasValue
             ? showSnackbar(message!,
-                type: ColorSnackbarState.success, duration: messageDuration)
+                type: ColorSnackbarState.info, duration: messageDuration)
             : null)
-        .catchError((onError) => showSnackbar(onError,
-            type: ColorSnackbarState.error, duration: messageDuration));
+        .catchError((onError) => debugPrint("${onError.toString()} ⭕"));
   }
 
   /// Converts all commas inside `string` to dots

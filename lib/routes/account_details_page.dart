@@ -74,7 +74,8 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
             Button.icon(
               size: 29,
               icon: Image.asset("assets/icons/copy.png", width: 14.82),
-              onPressed: () {},
+              onPressed: () => "patriciasilvab.near"
+                  .copyToClipboard(message: "wallet id copied!"),
             ),
           ]),
         ]),
@@ -114,7 +115,10 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
                         ),
                       ),
                       const Gap(10).row,
-                      SvgPicture.asset("assets/icons/info-blue.svg"),
+                      AppTooltip(
+                        message: "",
+                        child: SvgPicture.asset("assets/icons/info-blue.svg"),
+                      ),
                     ]),
                     const Gap(10).row,
                     Text.rich(

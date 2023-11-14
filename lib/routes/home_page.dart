@@ -10,6 +10,7 @@ import 'package:wallet_p2p/widgets/custom_card.dart';
 import 'package:wallet_p2p/widgets/footer.dart';
 import 'package:wallet_p2p/widgets/header.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
+import 'package:wallet_p2p/widgets/tooltip.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -83,7 +84,10 @@ class HomePage extends StatelessWidget {
                   child: Button.variant(
                 context,
                 text: "BALANCES",
-                onPressed: () {},
+                onPressed: () {
+                  // TODO just for testing some routes
+                  context.goNamed("connectWithNear");
+                },
               )),
               const Gap(12).row,
               Expanded(
@@ -122,7 +126,10 @@ class HomePage extends StatelessWidget {
                       fontFamily: FontFamily.karla("700"),
                     )),
             const Gap(6).column,
-            SvgPicture.asset("assets/icons/info-blue.svg"),
+            AppTooltip(
+              message: "",
+              child: SvgPicture.asset("assets/icons/info-blue.svg"),
+            ),
             const Gap(18).column,
             Row(
                 crossAxisAlignment: CrossAxisAlignment.start,

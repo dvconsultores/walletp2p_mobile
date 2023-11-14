@@ -1,8 +1,11 @@
 import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
+import 'package:wallet_p2p/main.dart';
 import 'package:wallet_p2p/routes/account_details_page.dart';
+import 'package:wallet_p2p/routes/connect_with_near.dart';
 import 'package:wallet_p2p/routes/explore_page.dart';
 import 'package:wallet_p2p/routes/home_page.dart';
+import 'package:wallet_p2p/routes/limited_permissions.dart';
 import 'package:wallet_p2p/routes/log_in_page.dart';
 import 'package:wallet_p2p/routes/passphrase_sign_in_page.dart';
 import 'package:wallet_p2p/routes/passphrase_sign_up_page.dart';
@@ -27,6 +30,7 @@ Page _pageBuilder(Widget child) => CustomTransitionPage(
     );
 
 final GoRouter router = GoRouter(
+    navigatorKey: globalNavigatorKey,
     initialLocation: "/",
     // errorBuilder: (context, state) {
     //   return const ErrorPage();
@@ -106,6 +110,18 @@ final GoRouter router = GoRouter(
               name: 'accountDetails',
               pageBuilder: (context, state) =>
                   _pageBuilder(const AccountDetailsPage()),
+            ),
+            GoRoute(
+              path: 'connect-with-near',
+              name: 'connectWithNear',
+              pageBuilder: (context, state) =>
+                  _pageBuilder(const ConnectWithNear()),
+            ),
+            GoRoute(
+              path: 'limited-permissions',
+              name: 'limitedPermissions',
+              pageBuilder: (context, state) =>
+                  _pageBuilder(const LimitedPermissions()),
             ),
           ]),
     ]);

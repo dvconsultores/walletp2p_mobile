@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
+import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button_aspect.dart';
 import 'package:wallet_p2p/widgets/button.dart';
@@ -94,7 +95,10 @@ class PassphraseSignUpPage extends StatelessWidget {
             ),
             const Gap(13).row,
             Button.icon(
-                icon: Image.asset("assets/icons/copy.png"), onPressed: () {}),
+                icon: Image.asset("assets/icons/copy.png"),
+                onPressed: () => passphrase
+                    .join(" ")
+                    .copyToClipboard(message: "Passphrase copied!")),
           ]),
           AppFooter(
             padding: const EdgeInsets.only(top: 49, bottom: 64),

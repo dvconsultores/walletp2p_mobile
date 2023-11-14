@@ -4,8 +4,8 @@ import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
+import 'package:wallet_p2p/widgets/account_field.dart';
 import 'package:wallet_p2p/widgets/button.dart';
-import 'package:wallet_p2p/widgets/input_field.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
 
 class AppDrawer extends StatefulWidget {
@@ -155,56 +155,12 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
               ),
               const Gap(9).column,
-              InputField(
-                obscureText: !visibleText,
+              AccountField(
+                user: "patriciasilvab.near",
                 controller: textController,
-                textAlign: TextAlign.end,
-                readOnly: true,
-                focusedBorderColor: Theme.of(context).colorScheme.outline,
-                textStyle: TextStyle(
-                  fontSize: 16,
-                  color: ThemeApp.colors(context).primary,
-                  fontWeight: FontWeight.w800,
-                  fontFamily: FontFamily.karla("800"),
-                ),
-                prefixPadding: const EdgeInsets.only(left: 18),
-                prefixIcon: Text(
-                  "patriciasilvab.near",
-                  style: TextStyle(
-                    fontWeight: FontWeight.w700,
-                    fontFamily: FontFamily.karla("700"),
-                  ),
-                ),
-                suffixIcon: IntrinsicWidth(
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8, left: 11),
-                    child: Row(children: [
-                      Button.icon(
-                        size: 29,
-                        boxShadow: [],
-                        icon: Image.asset("assets/icons/copy.png", width: 15),
-                        onPressed: () {},
-                      ),
-                      const Gap(6).row,
-                      Button.icon(
-                          size: 29,
-                          boxShadow: const [],
-                          bgColor: ThemeApp.colors(context).secondary,
-                          borderSide: BorderSide(
-                              width: 1,
-                              color: ThemeApp.colors(context).primary),
-                          icon: Icon(
-                            visibleText
-                                ? Icons.remove_red_eye_outlined
-                                : Icons.visibility_off_outlined,
-                            size: 15,
-                            color: ThemeApp.colors(context).primary,
-                          ),
-                          onPressed: () =>
-                              setState(() => visibleText = !visibleText)),
-                    ]),
-                  ),
-                ),
+                visibleText: visibleText,
+                onPressedVisibity: () =>
+                    setState(() => visibleText = !visibleText),
               ),
               const Gap(14).column,
               Button(
