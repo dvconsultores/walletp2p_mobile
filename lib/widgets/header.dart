@@ -8,6 +8,7 @@ import 'package:wallet_p2p/utils/helper_widgets/custom_transition_wrapper.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/drawer.dart';
+import 'package:wallet_p2p/widgets/tooltip.dart';
 
 /// ? Custom Application header
 class AppHeader extends StatelessWidget {
@@ -18,6 +19,7 @@ class AppHeader extends StatelessWidget {
     this.desc,
     this.descAlign,
     this.descTextAlign = TextAlign.center,
+    this.descExpanded = false,
     this.descTip,
     this.topText,
     this.bottomText,
@@ -41,6 +43,7 @@ class AppHeader extends StatelessWidget {
   final double? bottomTextPaddingLeft;
   final double? bottomTextPaddingRight;
   final String? desc;
+  final bool descExpanded;
   final AlignmentGeometry? descAlign;
   final TextAlign descTextAlign;
   final String? descTip;
@@ -129,6 +132,7 @@ class AppHeader extends StatelessWidget {
             descAlign: descAlign,
             descTip: descTip,
             descTextAlign: descTextAlign,
+            descExpanded: descExpanded,
           ),
         ]
       ]),
@@ -153,6 +157,7 @@ class CustomTitle extends StatelessWidget {
     this.descAlign,
     this.descTip,
     this.descTextAlign = TextAlign.center,
+    this.descExpanded = false,
   });
 
   final double? width;
@@ -169,6 +174,7 @@ class CustomTitle extends StatelessWidget {
   final AlignmentGeometry? descAlign;
   final TextAlign descTextAlign;
   final String? descTip;
+  final bool descExpanded;
 
   @override
   Widget build(BuildContext context) {
@@ -180,6 +186,9 @@ class CustomTitle extends StatelessWidget {
           fontFamily: FontFamily.karla("700"),
           letterSpacing: 0.36,
         );
+
+    final descWidget =
+        Text(desc ?? '', textAlign: descTextAlign, style: descStyle);
 
     return SizedBox(
         width: width,
@@ -204,10 +213,22 @@ class CustomTitle extends StatelessWidget {
                 )),
           if (desc.hasValue) ...[
             const Gap(16).column,
-            Align(
-              alignment: descAlign ?? Alignment.center,
-              child: Text(desc!, textAlign: descTextAlign, style: descStyle),
-            ),
+            Row(children: [
+              if (descExpanded)
+                Expanded(child: descWidget)
+              else
+                Align(
+                  alignment: descAlign ?? Alignment.center,
+                  child: descWidget,
+                ),
+              if (descTip != null) ...[
+                const Gap(8).row,
+                AppTooltip(
+                  message: descTip,
+                  child: SvgPicture.asset("assets/icons/info-blue.svg"),
+                )
+              ]
+            ]),
           ]
         ]));
   }

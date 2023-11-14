@@ -139,7 +139,7 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
           bottomTextAlign: Alignment.centerLeft,
           desc: "MOST SECURE (RECOMMENDED)",
           descAlign: Alignment.centerLeft,
-          descTip: "hola",
+          descTip: "",
         ),
         const Gap(16).column,
       ]),

@@ -35,6 +35,7 @@ class EmailVerificationPage extends StatelessWidget {
             bottomText: "VERIFICATION",
             desc:
                 "ENTER THE VERIFICATION CODE WE JUST SENT ON YOUR EMAIL ADDRESS",
+            descExpanded: true,
           ),
           const Gap(288).column,
           OtpTextField(

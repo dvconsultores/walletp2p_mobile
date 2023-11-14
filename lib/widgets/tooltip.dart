@@ -19,9 +19,11 @@ class AppTooltip extends StatelessWidget {
         color: ThemeApp.colors(context).primary,
         borderRadius: const BorderRadius.all(Radius.circular(8)),
       ),
-      textStyle: const TextStyle(
+      textStyle: TextStyle(
         fontSize: 12,
         color: Colors.white,
+        fontWeight: FontWeight.w400,
+        fontFamily: FontFamily.karla("400"),
       ),
       child: child,
     );
