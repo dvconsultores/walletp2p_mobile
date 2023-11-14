@@ -28,7 +28,7 @@ class EmailVerificationPage extends StatelessWidget {
         scrollable: true,
         body: Column(children: [
           const AppHeader(
-            width: 290,
+            width: 300,
             topText: "OTP",
             topTextPaddingRight: 65,
             topTextAlign: Alignment.centerRight,

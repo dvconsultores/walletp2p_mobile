@@ -8,7 +8,6 @@ import 'package:wallet_p2p/utils/helper_widgets/custom_transition_wrapper.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/drawer.dart';
-import 'package:wallet_p2p/widgets/tooltip.dart';
 
 /// ? Custom Application header
 class AppHeader extends StatelessWidget {
@@ -18,6 +17,7 @@ class AppHeader extends StatelessWidget {
     this.width,
     this.desc,
     this.descAlign,
+    this.descTextAlign = TextAlign.center,
     this.descTip,
     this.topText,
     this.bottomText,
@@ -42,6 +42,7 @@ class AppHeader extends StatelessWidget {
   final double? bottomTextPaddingRight;
   final String? desc;
   final AlignmentGeometry? descAlign;
+  final TextAlign descTextAlign;
   final String? descTip;
   final Widget? leadingWidget;
   final bool showOptions;
@@ -127,6 +128,7 @@ class AppHeader extends StatelessWidget {
             desc: desc,
             descAlign: descAlign,
             descTip: descTip,
+            descTextAlign: descTextAlign,
           ),
         ]
       ]),
@@ -150,6 +152,7 @@ class CustomTitle extends StatelessWidget {
     this.desc,
     this.descAlign,
     this.descTip,
+    this.descTextAlign = TextAlign.center,
   });
 
   final double? width;
@@ -164,6 +167,7 @@ class CustomTitle extends StatelessWidget {
   final double? bottomTextPaddingRight;
   final String? desc;
   final AlignmentGeometry? descAlign;
+  final TextAlign descTextAlign;
   final String? descTip;
 
   @override
@@ -202,16 +206,7 @@ class CustomTitle extends StatelessWidget {
             const Gap(16).column,
             Align(
               alignment: descAlign ?? Alignment.center,
-              child: Row(children: [
-                Text(desc!, style: descStyle),
-                if (descTip.hasValue) ...[
-                  const Gap(8).row,
-                  AppTooltip(
-                    message: descTip,
-                    child: SvgPicture.asset("assets/icons/info-blue.svg"),
-                  )
-                ]
-              ]),
+              child: Text(desc!, textAlign: descTextAlign, style: descStyle),
             ),
           ]
         ]));
