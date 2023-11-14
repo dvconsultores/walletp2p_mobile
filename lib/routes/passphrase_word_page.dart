@@ -44,7 +44,6 @@ class PassphraseWordPage extends StatelessWidget {
           ),
           const Gap(49).column,
           Button.variant(
-            context,
             text: "GO BACK",
             onPressed: () => context.pop(),
           ),

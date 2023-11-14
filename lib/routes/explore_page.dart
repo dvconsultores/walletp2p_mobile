@@ -146,7 +146,6 @@ class _ExplorePageState extends State<ExplorePage> {
           )),
           const Gap(13).row,
           Button.variant(
-            context,
             height: 34.26,
             text: "ALL",
             bgColor: ThemeApp.colors(context).secondary,

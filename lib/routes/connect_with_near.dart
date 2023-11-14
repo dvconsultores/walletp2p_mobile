@@ -7,7 +7,6 @@ import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/custom_card.dart';
 import 'package:wallet_p2p/widgets/header.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
-import 'package:wallet_p2p/widgets/snackbar.dart';
 
 class ConnectWithNear extends StatefulWidget {
   const ConnectWithNear({super.key});
@@ -17,7 +16,7 @@ class ConnectWithNear extends StatefulWidget {
 }
 
 class _ConnectWithNearState extends State<ConnectWithNear> {
-  final accountList = [
+  final accountList = <Map<String, dynamic>>[
     {
       "user": "fritzwagner.near",
       "account": "fritzwagner.near",
@@ -50,7 +49,6 @@ class _ConnectWithNearState extends State<ConnectWithNear> {
         ),
         IntrinsicWidth(
             child: Button.variant(
-          context,
           margin: const EdgeInsets.symmetric(vertical: 23),
           height: 34,
           bgColor: ThemeApp.colors(context).secondary,
@@ -76,15 +74,12 @@ class _ConnectWithNearState extends State<ConnectWithNear> {
                 itemBuilder: (context, index) {
                   final item = accountList[index];
 
-                  // TODO here
                   return AccountField(
                     user: item['user'] as String,
-                    controller: TextEditingController(text: item['account']),
-                    visibleText: false,
-                    onPressedVisibity: () {
-                      
-                      showSnackbar("message", type: ColorSnackbarState.warning);
-                    },
+                    value: item['account'] as String,
+                    visibleText: (item['visible'] as bool?) ?? false,
+                    onPressedVisibity: (visibility) =>
+                        setState(() => item['visible'] = !visibility),
                   );
                 },
                 separatorBuilder: (context, index) => const Gap(14).column,
@@ -105,7 +100,6 @@ class _ConnectWithNearState extends State<ConnectWithNear> {
         Row(children: [
           Expanded(
               child: Button.variant(
-            context,
             bgColor: ThemeApp.colors(context).secondary,
             text: "CANCEL",
             onPressed: () {},

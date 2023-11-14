@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wallet_p2p/main.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
@@ -42,6 +43,8 @@ class ButtonAspect extends StatelessWidget {
     this.textAlign = TextAlign.center,
     this.textExpanded = false,
   });
+  static final context = globalNavigatorKey.currentContext!;
+
   final String? text;
   final TextStyle? textStyle;
   final double? width;
@@ -71,8 +74,7 @@ class ButtonAspect extends StatelessWidget {
   final Widget? content;
   final Widget? child;
 
-  static ButtonAspect variant(
-    BuildContext context, {
+  static ButtonAspect variant({
     String? text,
     TextStyle? textStyle,
     double? width,
@@ -176,8 +178,7 @@ class ButtonAspect extends StatelessWidget {
         child: icon,
       );
 
-  static ButtonAspect iconVariant(
-    BuildContext context, {
+  static ButtonAspect iconVariant({
     double size = 45,
     BoxConstraints? constraints,
     BorderRadius? borderRadius,

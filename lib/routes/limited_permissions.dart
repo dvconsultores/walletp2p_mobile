@@ -13,6 +13,7 @@ class LimitedPermissions extends StatelessWidget {
       body: Column(children: [
         const AppHeader(),
         const Gap(23).column,
+        // TODO this widget
       ]),
     ));
   }

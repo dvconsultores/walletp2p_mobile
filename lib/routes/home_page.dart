@@ -82,7 +82,6 @@ class HomePage extends StatelessWidget {
             Row(children: [
               Expanded(
                   child: Button.variant(
-                context,
                 text: "BALANCES",
                 onPressed: () {
                   // TODO just for testing some routes
@@ -170,7 +169,6 @@ class HomePage extends StatelessWidget {
                       child: Align(
                         alignment: Alignment.topCenter,
                         child: Button.variant(
-                          context,
                           width: 145,
                           content: Text.rich(
                             TextSpan(children: [

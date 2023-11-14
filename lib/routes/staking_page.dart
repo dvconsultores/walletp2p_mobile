@@ -183,7 +183,6 @@ class StakingPage extends StatelessWidget {
                   ),
                   const Gap(12).column,
                   Button.variant(
-                    context,
                     width: 192,
                     height: 34,
                     text: "STAKE MY TOKENS",

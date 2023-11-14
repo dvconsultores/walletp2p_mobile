@@ -16,7 +16,7 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
-  final textController = TextEditingController()..text = "test";
+  final userValue = "test";
 
   bool visibleText = false;
 
@@ -157,10 +157,10 @@ class _AppDrawerState extends State<AppDrawer> {
               const Gap(9).column,
               AccountField(
                 user: "patriciasilvab.near",
-                controller: textController,
+                value: userValue,
                 visibleText: visibleText,
-                onPressedVisibity: () =>
-                    setState(() => visibleText = !visibleText),
+                onPressedVisibity: (visibility) =>
+                    setState(() => visibleText = !visibility),
               ),
               const Gap(14).column,
               Button(
