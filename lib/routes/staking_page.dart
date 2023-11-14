@@ -37,6 +37,7 @@ class StakingPage extends StatelessWidget {
               const AppHeader(
                 topText: "STAKING",
                 desc: "STAKE YOUR NEAR TOKENS WITH A VALIDATOR",
+                descExpanded: true,
               ),
               const Gap(19).column,
               CustomCard(

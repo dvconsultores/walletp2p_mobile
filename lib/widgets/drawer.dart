@@ -209,10 +209,7 @@ class _AppDrawerState extends State<AppDrawer> {
               const Gap(14).column,
               Button(
                 text: "IMPORT ACCOUNT",
-                onPressed: () {
-                  // TODO used just for build development, can be removed
-                  context.goNamed("login");
-                },
+                onPressed: () {},
               ),
               const Gap(18).column,
               Button(

@@ -44,6 +44,7 @@ class SelectAccountPage extends StatelessWidget {
             bottomText: "ACCOUNT",
             bottomTextAlign: Alignment.centerRight,
             desc: "LOGIN WITH GMAIL",
+            descExpanded: true,
           ),
           const Gap(43).column,
           for (final item in accounts)

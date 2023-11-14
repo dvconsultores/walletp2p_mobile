@@ -150,7 +150,6 @@ class HomePage extends StatelessWidget {
                     )
                 ]),
             const Gap(64).column,
-            // TODO missing card text over image
             SizedBox(
               width: double.maxFinite,
               child: Stack(

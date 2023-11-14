@@ -37,6 +37,7 @@ class PassphraseSignUpPage extends StatelessWidget {
             bottomText: "SIGN UP",
             bottomTextAlign: Alignment.centerLeft,
             desc: "GENERATE AND SAFELY STORE A UNIQUE PASSPHRASE",
+            descExpanded: true,
           ),
           const Gap(40).column,
           SizedBox(

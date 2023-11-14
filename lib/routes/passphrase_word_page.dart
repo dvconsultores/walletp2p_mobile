@@ -23,6 +23,7 @@ class PassphraseWordPage extends StatelessWidget {
             bottomTextAlign: Alignment.centerLeft,
             desc:
                 "ENTER THE FOLLOWING WORD FROM YOUR RECOVERY PHRASE TO COMPLETE THE SETUP PROCESS",
+            descExpanded: true,
           ),
           const Gap(77).column,
           InputField.sizedBox(

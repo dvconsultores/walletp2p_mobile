@@ -20,6 +20,7 @@ class PassphraseSigInPage extends StatelessWidget {
             bottomText: "LOG IN",
             bottomTextAlign: Alignment.centerLeft,
             desc: "SECURELY LOG IN WITH YOUR EXCLUSIVE PASSPHRASE",
+            descExpanded: true,
           ),
           const Gap(33).column,
           Expanded(

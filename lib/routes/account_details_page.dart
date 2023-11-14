@@ -1,12 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/custom_card.dart';
+import 'package:wallet_p2p/widgets/footer.dart';
 import 'package:wallet_p2p/widgets/header.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
+import 'package:wallet_p2p/widgets/tooltip.dart';
 
 class AccountDetailsPage extends StatefulWidget {
   const AccountDetailsPage({super.key});
@@ -142,6 +145,83 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
           descTip: "",
         ),
         const Gap(16).column,
+        CustomCard(
+          backgroundColor: ThemeApp.colors(context).secondary,
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            SizedBox(
+              width: 130,
+              child: Text.rich(TextSpan(children: [
+                TextSpan(
+                    text: 'LEDGER HARDWARE WALLET\n', style: titleTextStyle),
+                WidgetSpan(child: const Gap(20).column),
+                TextSpan(
+                  text:
+                      'Improve the security of your account by using a hardware wallet.',
+                  style: bodyTextStyle,
+                ),
+              ])),
+            ),
+            const Gap(10).row,
+            Button(
+              text: "ENABLE",
+              constraints: const BoxConstraints(maxWidth: 134),
+              height: 34.26,
+              onPressed: () {},
+            )
+          ]),
+        ),
+        const Gap(41).column,
+        CustomCard(
+          backgroundColor: ThemeApp.colors(context).secondary,
+          child:
+              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
+            SizedBox(
+              width: 140,
+              child: Row(children: [
+                Expanded(
+                  child: Text.rich(TextSpan(children: [
+                    TextSpan(text: 'SEND PHRASE\n', style: titleTextStyle),
+                    TextSpan(
+                      text: 'Enable jul 19 2023',
+                      style: bodyTextStyle,
+                    ),
+                  ])),
+                ),
+                const Gap(8).row,
+                AppTooltip(
+                  message: "",
+                  child: SvgPicture.asset("assets/icons/info-blue.svg"),
+                )
+              ]),
+            ),
+            const Gap(10).row,
+            Button(
+              text: "DISABLE",
+              constraints: const BoxConstraints(maxWidth: 134),
+              height: 34.26,
+              onPressed: () {},
+            )
+          ]),
+        ),
+        const Gap(27).column,
+        Button(
+          text: "EXPORT LOCAL PRIVATE KEY",
+          borderSide: BorderSide(color: ThemeApp.colors(context).primary),
+          bgColor: ThemeApp.colors(context).secondary,
+          color: ThemeApp.colors(context).primary,
+          boxShadow: const [],
+          onPressed: () {},
+        ),
+        const Gap(15).column,
+        Button(
+          text: "REMOVE ACCOUNT FROM WALLET",
+          onPressed: () {
+            // TODO used just for build development, can be removed
+            context.goNamed("login");
+          },
+        ),
+        const AppFooter(padding: EdgeInsets.only(top: 24, bottom: 33))
       ]),
     ));
   }
