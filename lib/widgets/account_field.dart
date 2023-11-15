@@ -9,12 +9,14 @@ class AccountField extends StatelessWidget {
   const AccountField({
     super.key,
     required this.user,
-    required this.value,
+    required this.coin,
+    required this.amount,
     this.visibleText = false,
     this.onPressedVisibity,
   });
   final String user;
-  final String value;
+  final double amount;
+  final String coin;
   final bool visibleText;
   final void Function(bool visibility)? onPressedVisibity;
 
@@ -37,7 +39,7 @@ class AccountField extends StatelessWidget {
                 ),
               ),
               FittedBox(
-                child: Text(visibleText ? value : '●●●●●●',
+                child: Text(visibleText ? "$amount $coin" : '●●●●●●',
                     style: TextStyle(
                       fontSize: 12,
                       color: ThemeApp.colors(context).primary,
@@ -53,7 +55,7 @@ class AccountField extends StatelessWidget {
           size: 29,
           boxShadow: [],
           icon: Image.asset("assets/icons/copy.png", width: 15),
-          onPressed: () => value.copyToClipboard(message: "text copied!"),
+          onPressed: () => user.copyToClipboard(message: "text copied!"),
         ),
         const Gap(6).row,
         Button.icon(

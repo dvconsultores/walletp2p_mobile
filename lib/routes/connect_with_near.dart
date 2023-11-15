@@ -17,22 +17,10 @@ class ConnectWithNear extends StatefulWidget {
 
 class _ConnectWithNearState extends State<ConnectWithNear> {
   final accountList = <Map<String, dynamic>>[
-    {
-      "user": "fritzwagner.near",
-      "account": "fritzwagner.near",
-    },
-    {
-      "user": "1onduh47886002882hsghwoj",
-      "account": "1onduh47886002882hsghwoj",
-    },
-    {
-      "user": "746nwoknnbbllsnnsppmi018",
-      "account": "746nwoknnbbllsnnsppmi018",
-    },
-    {
-      "user": "fritzwagner.near",
-      "account": "fritzwagner.near",
-    },
+    {"user": "fritzwagner.near", "amount": 0.001, "coin": "NEAR"},
+    {"user": "1onduh47886002882hsghwoj", "amount": 0.110, "coin": "NEAR"},
+    {"user": "746nwoknnbbllsnnsppmi018", "amount": 2.001, "coin": "NEAR"},
+    {"user": "fritzwagner.near", "amount": 0.001, "coin": "NEAR"},
   ];
 
   @override
@@ -76,7 +64,8 @@ class _ConnectWithNearState extends State<ConnectWithNear> {
 
                   return AccountField(
                     user: item['user'] as String,
-                    value: item['account'] as String,
+                    amount: item['amount'] as double,
+                    coin: item['coin'] as String,
                     visibleText: (item['visible'] as bool?) ?? false,
                     onPressedVisibity: (visibility) =>
                         setState(() => item['visible'] = !visibility),
@@ -102,7 +91,7 @@ class _ConnectWithNearState extends State<ConnectWithNear> {
               child: Button.variant(
             bgColor: ThemeApp.colors(context).secondary,
             text: "CANCEL",
-            onPressed: () {},
+            onPressed: () => context.pop(),
           )),
           const Gap(12).row,
           Expanded(

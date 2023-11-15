@@ -16,7 +16,7 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
-  final userValue = "test";
+  final balance = 0.01;
 
   bool visibleText = false;
 
@@ -157,7 +157,8 @@ class _AppDrawerState extends State<AppDrawer> {
               const Gap(9).column,
               AccountField(
                 user: "patriciasilvab.near",
-                value: userValue,
+                amount: balance,
+                coin: "NEAR",
                 visibleText: visibleText,
                 onPressedVisibity: (visibility) =>
                     setState(() => visibleText = !visibility),
