@@ -21,12 +21,12 @@ class HomePage extends StatelessWidget {
       {
         "label": "SEND",
         "icon": const Icon(Icons.arrow_upward_rounded),
-        "action": () {},
+        "action": () => context.goNamed("send"),
       },
       {
         "label": "RECEIVE",
         "icon": const Icon(Icons.arrow_downward_rounded),
-        "action": () {},
+        "action": () => context.goNamed("sendQr"),
       },
       {
         "label": "TOP UP",
@@ -85,7 +85,6 @@ class HomePage extends StatelessWidget {
                 text: "BALANCES",
                 onPressed: () {
                   // TODO just for testing some routes
-                  context.goNamed("connectWithNear");
                 },
               )),
               const Gap(12).row,
@@ -96,27 +95,29 @@ class HomePage extends StatelessWidget {
               )),
             ]),
             const Gap(64).column,
-            IntrinsicWidth(
-              child:
-                  Column(crossAxisAlignment: CrossAxisAlignment.end, children: [
-                Text.rich(
-                    TextSpan(children: [
-                      TextSpan(
-                          text: "\$",
+            SizedBox(
+              width: double.maxFinite,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text.rich(
+                        TextSpan(children: [
+                          TextSpan(
+                              text: "\$",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w400,
+                                fontFamily: FontFamily.montserrat("400"),
+                              )),
+                          const TextSpan(text: "1.32"),
+                        ]),
+                        style: const TextStyle(fontSize: 48)),
+                    Transform.translate(
+                      offset: const Offset(50, 0),
+                      child: const Text("USD",
                           style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontFamily: FontFamily.montserrat("400"),
-                          )),
-                      const TextSpan(text: "1.32"),
-                    ]),
-                    style: const TextStyle(fontSize: 48)),
-                Transform.translate(
-                  offset: const Offset(8, 0),
-                  child: const Text("USD",
-                      style: TextStyle(
-                          fontSize: 16, letterSpacing: 1.76, height: .4)),
-                ),
-              ]),
+                              fontSize: 16, letterSpacing: 1.76, height: .4)),
+                    ),
+                  ]),
             ),
             const Gap(14).column,
             Text("AVAILABLE BALANCE",
@@ -250,6 +251,7 @@ class HomePage extends StatelessWidget {
                     boxShadow: const [],
                     leadingGap: 13,
                     trailingSpacer: true,
+                    padding: const EdgeInsets.all(0),
                     leading: Button.icon(
                       size: 40,
                       icon: Icon(

@@ -8,14 +8,14 @@ import 'package:wallet_p2p/widgets/custom_card.dart';
 import 'package:wallet_p2p/widgets/header.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
 
-class ConnectWithNear extends StatefulWidget {
-  const ConnectWithNear({super.key});
+class ConnectWithNearPage extends StatefulWidget {
+  const ConnectWithNearPage({super.key});
 
   @override
-  State<ConnectWithNear> createState() => _ConnectWithNearState();
+  State<ConnectWithNearPage> createState() => _ConnectWithNearPageState();
 }
 
-class _ConnectWithNearState extends State<ConnectWithNear> {
+class _ConnectWithNearPageState extends State<ConnectWithNearPage> {
   final accountList = <Map<String, dynamic>>[
     {"user": "fritzwagner.near", "amount": 0.001, "coin": "NEAR"},
     {"user": "1onduh47886002882hsghwoj", "amount": 0.110, "coin": "NEAR"},

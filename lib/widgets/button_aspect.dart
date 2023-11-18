@@ -14,7 +14,7 @@ class ButtonAspect extends StatelessWidget {
     this.constraints,
     this.shape,
     this.borderRadius = const BorderRadius.all(Radius.circular(40)),
-    this.border,
+    this.borderSide = BorderSide.none,
     this.boxShadow = const [
       BoxShadow(
         offset: Offset(-1, 6),
@@ -26,7 +26,7 @@ class ButtonAspect extends StatelessWidget {
     this.color = Colors.white,
     this.bgColor,
     this.bgColorDisabled,
-    this.padding,
+    this.padding = const EdgeInsets.symmetric(horizontal: 15),
     this.margin,
     this.child,
     this.leading,
@@ -51,7 +51,7 @@ class ButtonAspect extends StatelessWidget {
   final double height;
   final BoxConstraints? constraints;
   final BorderRadius? borderRadius;
-  final BoxBorder? border;
+  final BorderSide? borderSide;
   final BoxShape? shape;
   final List<BoxShadow> boxShadow;
   final Color color;
@@ -82,10 +82,7 @@ class ButtonAspect extends StatelessWidget {
     BoxConstraints? constraints,
     BorderRadius borderRadius = const BorderRadius.all(Radius.circular(40)),
     BoxShape? shape,
-    BoxBorder border = const Border.symmetric(
-      horizontal: BorderSide(width: 1),
-      vertical: BorderSide(width: 1),
-    ),
+    BorderSide borderSide = const BorderSide(width: 1),
     List<BoxShadow> boxShadow = const [],
     Color? color,
     Color? bgColor,
@@ -115,7 +112,7 @@ class ButtonAspect extends StatelessWidget {
         constraints: constraints,
         shape: shape,
         borderRadius: borderRadius,
-        border: border,
+        borderSide: borderSide,
         boxShadow: boxShadow,
         color: color ?? ThemeApp.colors(context).text,
         bgColor: bgColor ?? ThemeApp.colors(context).tertiary,
@@ -143,10 +140,7 @@ class ButtonAspect extends StatelessWidget {
     BoxConstraints? constraints,
     BorderRadius? borderRadius,
     BoxShape shape = BoxShape.circle,
-    BoxBorder border = const Border.symmetric(
-      horizontal: BorderSide(width: 1),
-      vertical: BorderSide(width: 1),
-    ),
+    BorderSide borderSide = const BorderSide(width: 1),
     List<BoxShadow> boxShadow = const [
       BoxShadow(
         offset: Offset(0, 6),
@@ -166,7 +160,7 @@ class ButtonAspect extends StatelessWidget {
         width: size,
         height: size,
         shape: shape,
-        border: border,
+        borderSide: borderSide,
         margin: margin,
         borderRadius: borderRadius,
         boxShadow: boxShadow,
@@ -182,10 +176,7 @@ class ButtonAspect extends StatelessWidget {
     double size = 45,
     BoxConstraints? constraints,
     BorderRadius? borderRadius,
-    BoxBorder border = const Border.symmetric(
-      horizontal: BorderSide(width: 1),
-      vertical: BorderSide(width: 1),
-    ),
+    BorderSide borderSide = const BorderSide(width: 1),
     BoxShape shape = BoxShape.circle,
     List<BoxShadow> boxShadow = const [],
     Color? color,
@@ -199,7 +190,7 @@ class ButtonAspect extends StatelessWidget {
         width: size,
         height: size,
         shape: shape,
-        border: border,
+        borderSide: borderSide,
         margin: margin,
         borderRadius: borderRadius,
         boxShadow: boxShadow,
@@ -240,7 +231,7 @@ class ButtonAspect extends StatelessWidget {
         color: bgColor ?? ThemeApp.colors(context).primary,
         shape: shape ?? BoxShape.rectangle,
         borderRadius: borderRadius,
-        border: border,
+        border: borderSide != null ? Border.fromBorderSide(borderSide!) : null,
         boxShadow: boxShadow,
       ),
       child: child ??

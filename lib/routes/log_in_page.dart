@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wallet_p2p/pages/email_verification.dart';
+import 'package:wallet_p2p/pages/email_verification_page.dart';
 import 'package:wallet_p2p/repositories/auth_api.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';

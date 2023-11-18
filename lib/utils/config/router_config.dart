@@ -2,16 +2,19 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_p2p/main.dart';
 import 'package:wallet_p2p/routes/account_details_page.dart';
-import 'package:wallet_p2p/routes/connect_with_near.dart';
+import 'package:wallet_p2p/routes/connect_with_near_page.dart';
 import 'package:wallet_p2p/routes/explore_page.dart';
 import 'package:wallet_p2p/routes/home_page.dart';
-import 'package:wallet_p2p/routes/limited_permissions.dart';
+import 'package:wallet_p2p/routes/limited_permissions_page.dart';
 import 'package:wallet_p2p/routes/log_in_page.dart';
 import 'package:wallet_p2p/routes/passphrase_sign_in_page.dart';
 import 'package:wallet_p2p/routes/passphrase_sign_up_page.dart';
 import 'package:wallet_p2p/routes/passphrase_word_page.dart';
 import 'package:wallet_p2p/routes/pick_username_page.dart';
 import 'package:wallet_p2p/routes/select_account_page.dart';
+import 'package:wallet_p2p/routes/send_details_page.dart';
+import 'package:wallet_p2p/routes/send_page.dart';
+import 'package:wallet_p2p/routes/send_qr_page.dart';
 import 'package:wallet_p2p/routes/staking_page.dart';
 import 'package:wallet_p2p/utils/helper_widgets/custom_transition_wrapper.dart';
 import 'package:wallet_p2p/utils/helper_widgets/double_back_to_close_widget.dart';
@@ -115,13 +118,29 @@ final GoRouter router = GoRouter(
               path: 'connect-with-near',
               name: 'connectWithNear',
               pageBuilder: (context, state) =>
-                  _pageBuilder(const ConnectWithNear()),
+                  _pageBuilder(const ConnectWithNearPage()),
             ),
             GoRoute(
               path: 'limited-permissions',
               name: 'limitedPermissions',
               pageBuilder: (context, state) =>
-                  _pageBuilder(const LimitedPermissions()),
+                  _pageBuilder(const LimitedPermissionsPage()),
+            ),
+            GoRoute(
+              path: 'send',
+              name: 'send',
+              pageBuilder: (context, state) => _pageBuilder(const SendPage()),
+            ),
+            GoRoute(
+              path: 'send-details',
+              name: 'sendDetails',
+              pageBuilder: (context, state) =>
+                  _pageBuilder(const SendDetailsPage()),
+            ),
+            GoRoute(
+              path: 'send-qr',
+              name: 'sendQr',
+              pageBuilder: (context, state) => _pageBuilder(const SendQrPage()),
             ),
           ]),
     ]);

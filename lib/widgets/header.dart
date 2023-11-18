@@ -30,6 +30,7 @@ class AppHeader extends StatelessWidget {
     this.bottomTextPaddingLeft,
     this.bottomTextPaddingRight,
     this.leadingWidget,
+    this.traillingWidget,
     this.showOptions = false,
   });
   final bool showArrow;
@@ -48,6 +49,7 @@ class AppHeader extends StatelessWidget {
   final TextAlign descTextAlign;
   final String? descTip;
   final Widget? leadingWidget;
+  final Widget? traillingWidget;
   final bool showOptions;
 
   @override
@@ -72,7 +74,9 @@ class AppHeader extends StatelessWidget {
                       ),
                     ),
                   )),
-          if (showOptions)
+          if (traillingWidget != null)
+            traillingWidget!
+          else if (showOptions)
             Row(children: [
               Button.icon(
                 size: Variables.headerButtonSize,

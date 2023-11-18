@@ -70,6 +70,7 @@ class ThemeApp {
             text: Color.fromRGBO(0, 0, 0, 1),
             textVariant: Color.fromRGBO(51, 51, 51, 1),
             accent: Color.fromRGBO(124, 123, 127, 1),
+            accentVariant: Color.fromRGBO(209, 196, 232, 1),
             success: Colors.green,
             warning: Color.fromARGB(255, 233, 198, 2),
           ),
@@ -118,6 +119,8 @@ class ThemeApp {
       accent: themeData.extension<ThemeDataColorExtension>()!.accent!,
       success: themeData.extension<ThemeDataColorExtension>()!.success!,
       warning: themeData.extension<ThemeDataColorExtension>()!.warning!,
+      accentVariant:
+          themeData.extension<ThemeDataColorExtension>()!.accentVariant!,
     );
   }
 
@@ -146,6 +149,7 @@ class ColorsApp {
     required this.accent,
     required this.success,
     required this.warning,
+    required this.accentVariant,
   });
   final Color background;
   final Color primary;
@@ -159,6 +163,7 @@ class ColorsApp {
   final Color accent;
   final Color success;
   final Color warning;
+  final Color accentVariant;
 }
 
 // ? Theme data color extension
@@ -168,12 +173,14 @@ class ThemeDataColorExtension extends ThemeExtension<ThemeDataColorExtension> {
     this.text,
     this.textVariant,
     this.accent,
+    this.accentVariant,
     this.success,
     this.warning,
   });
   final Color? text;
   final Color? textVariant;
   final Color? accent;
+  final Color? accentVariant;
   final Color? success;
   final Color? warning;
 
@@ -182,6 +189,7 @@ class ThemeDataColorExtension extends ThemeExtension<ThemeDataColorExtension> {
     Color? text,
     Color? textVariant,
     Color? accent,
+    Color? accentVariant,
     Color? success,
     Color? warning,
   }) {
@@ -189,6 +197,7 @@ class ThemeDataColorExtension extends ThemeExtension<ThemeDataColorExtension> {
       text: text ?? this.text,
       textVariant: textVariant ?? this.textVariant,
       accent: accent ?? this.accent,
+      accentVariant: accentVariant ?? this.accentVariant,
       success: success ?? this.success,
       warning: warning ?? this.warning,
     );
@@ -202,6 +211,7 @@ class ThemeDataColorExtension extends ThemeExtension<ThemeDataColorExtension> {
       text: Color.lerp(text, other.text, t),
       textVariant: Color.lerp(text, other.text, t),
       accent: Color.lerp(accent, other.accent, t),
+      accentVariant: Color.lerp(accentVariant, other.accentVariant, t),
       success: Color.lerp(success, other.success, t),
       warning: Color.lerp(warning, other.warning, t),
     );
@@ -209,7 +219,7 @@ class ThemeDataColorExtension extends ThemeExtension<ThemeDataColorExtension> {
 
   @override
   String toString() =>
-      'ThemeDataColorExtension(text: $text, textVariant: $textVariant, accent: $accent, success: $success, warning: $warning)';
+      'ThemeDataColorExtension(text: $text, textVariant: $textVariant, accent: $accent, accentVariant: $accentVariant, success: $success, warning: $warning)';
 }
 
 // ? Theme data style extension

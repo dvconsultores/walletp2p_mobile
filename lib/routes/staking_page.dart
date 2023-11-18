@@ -110,6 +110,7 @@ class StakingPage extends StatelessWidget {
                         width: 185,
                         bgColor: Colors.transparent,
                         boxShadow: const [],
+                        padding: const EdgeInsets.all(0),
                         leading: Button.icon(
                           size: 40,
                           bgColor: Colors.white,
