@@ -63,6 +63,6 @@
     </queries>
 
     <queries>
-        <package android:name="app.apoloPay.apolo" />
+        <package android:name="com.example.walletP2P" />
     </queries>
 </manifest>
