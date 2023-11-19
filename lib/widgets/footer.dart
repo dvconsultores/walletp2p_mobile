@@ -32,7 +32,7 @@ class AppFooter extends StatelessWidget {
     void goTo() => debugPrint("on tap terms");
 
     return Padding(
-      padding: padding ?? EdgeInsets.only(bottom: child != null ? 62 : 30),
+      padding: padding ?? const EdgeInsets.all(0),
       child: child != null
           ? child!(context, ts, ts2, ts3)
           : Text.rich(

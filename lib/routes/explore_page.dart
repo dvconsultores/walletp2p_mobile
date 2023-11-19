@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
+import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/custom_card.dart';
@@ -153,92 +154,83 @@ class _ExplorePageState extends State<ExplorePage> {
           ),
         ]),
         const Gap(22).column,
-        SizedBox(
-          height: 400,
-          child: GridView.count(
-              physics: const BouncingScrollPhysics(),
-              crossAxisCount: 2,
-              mainAxisSpacing: 17,
-              crossAxisSpacing: 17,
-              children: projectList
-                  .map((project) => CustomCard(
-                        padding: const EdgeInsets.all(0),
-                        borderSide: BorderSide(
-                          color: ThemeApp.colors(context).textVariant,
-                        ),
-                        backgroundColor: ThemeApp.colors(context).secondary,
-                        child: Column(children: [
-                          Align(
-                              alignment: Alignment.centerRight,
-                              child: Container(
-                                width: 91,
-                                height: 20,
-                                decoration: BoxDecoration(
-                                  color: ThemeApp.colors(context).textVariant,
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(20),
-                                    bottomLeft: Radius.circular(20),
-                                  ),
+        GridView.count(
+            physics: const NeverScrollableScrollPhysics(),
+            crossAxisCount: 2,
+            mainAxisSpacing: 17,
+            crossAxisSpacing: 17,
+            shrinkWrap: true,
+            children: projectList
+                .map((project) => CustomCard(
+                      padding: const EdgeInsets.all(0),
+                      borderSide: BorderSide(
+                        color: ThemeApp.colors(context).textVariant,
+                      ),
+                      backgroundColor: ThemeApp.colors(context).secondary,
+                      child: Column(children: [
+                        Align(
+                            alignment: Alignment.centerRight,
+                            child: Container(
+                              width: 91,
+                              height: 20,
+                              decoration: BoxDecoration(
+                                color: ThemeApp.colors(context).textVariant,
+                                borderRadius: const BorderRadius.only(
+                                  topRight: Radius.circular(20),
+                                  bottomLeft: Radius.circular(20),
                                 ),
-                                child: Align(
-                                    child: Text(project['type'] as String,
-                                        style: TextStyle(
-                                          fontSize: 7,
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: FontFamily.karla("500"),
-                                        ))),
-                              )),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              left: 16,
-                              right: 16,
-                              bottom: 16,
-                            ),
-                            child: SizedBox(
-                              width: double.maxFinite,
-                              child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    HaloIconWidget(
-                                      size: 20,
-                                      firstHaloSize: 4,
-                                      secondHaloSize: 9,
-                                      color: project['color'] as Color,
-                                      icon: Image.asset(
-                                        project['icon'] as String,
-                                        width: 20,
-                                      ),
-                                    ),
-                                    FractionallySizedBox(
-                                      widthFactor: .5,
-                                      child: Text(project['name'] as String,
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .bodyLarge
-                                              ?.copyWith(
-                                                fontWeight: FontWeight.w700,
-                                                fontFamily:
-                                                    FontFamily.karla("700"),
-                                              )),
-                                    ),
-                                    const Gap(5).column,
-                                    Text(project['desc'] as String,
-                                        style: TextStyle(
-                                          color: ThemeApp.colors(context)
-                                              .textVariant,
-                                          fontWeight: FontWeight.w500,
-                                          fontFamily: FontFamily.karla("500"),
-                                        ))
-                                  ]),
-                            ),
-                          ),
-                        ]),
-                      ))
-                  .toList()),
-        ),
-        const AppFooter(padding: EdgeInsets.only(top: 25, bottom: 33)),
+                              ),
+                              child: Align(
+                                  child: Text(project['type'] as String,
+                                      style: TextStyle(
+                                        fontSize: 7,
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w500,
+                                        fontFamily: FontFamily.karla("500"),
+                                      ))),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 16),
+                          child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                HaloIconWidget(
+                                  size: 20,
+                                  firstHaloSize: 4,
+                                  secondHaloSize: 9,
+                                  color: project['color'] as Color,
+                                  icon: Image.asset(project['icon'] as String,
+                                      width: 20),
+                                ),
+                                FractionallySizedBox(
+                                  widthFactor: .5,
+                                  child: Text(project['name'] as String,
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .bodyLarge
+                                          ?.copyWith(
+                                            fontWeight: FontWeight.w700,
+                                            fontFamily: FontFamily.karla("700"),
+                                          )),
+                                ),
+                                const Gap(5).column,
+                                Text(project['desc'] as String,
+                                    overflow: TextOverflow.ellipsis,
+                                    maxLines: 3,
+                                    style: TextStyle(
+                                      color:
+                                          ThemeApp.colors(context).textVariant,
+                                      fontWeight: FontWeight.w500,
+                                      fontFamily: FontFamily.karla("500"),
+                                    ))
+                              ]),
+                        ),
+                      ]),
+                    ))
+                .toList()),
       ]),
+      footer: const AppFooter(
+          padding: EdgeInsets.only(top: Variables.gapWithFooter)),
     ));
   }
 }

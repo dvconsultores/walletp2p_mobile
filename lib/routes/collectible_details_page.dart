@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
+import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/button_aspect.dart';
@@ -34,6 +35,12 @@ class CollectibleDetailsPage extends StatelessWidget {
     return AppScaffold(
       child: ScaffoldBody(
         bgImgTop: -70,
+        scrollable: true,
+        padding: EdgeInsets.only(
+          left: Variables.paddingScaffold.left,
+          right: Variables.paddingScaffold.right,
+          top: Variables.paddingScaffold.top,
+        ),
         body: Column(children: [
           const AppHeader(),
           const Gap(26).column,
@@ -170,7 +177,7 @@ class CollectibleDetailsPage extends StatelessWidget {
             text: "TRANSFER",
             onPressed: () => context.pushNamed("transferNft"),
           ),
-          const Gap(33).column
+          Gap(Variables.paddingScaffold.bottom).column
         ]),
       ),
     );

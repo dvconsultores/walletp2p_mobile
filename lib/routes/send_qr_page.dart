@@ -81,8 +81,8 @@ class SendQrPage extends StatelessWidget {
               onPressed: () {},
             )),
           ]),
-          AppFooter(padding: EdgeInsets.only(top: size.height * .3, bottom: 33))
         ]),
+        footer: AppFooter(padding: EdgeInsets.only(top: size.height * .3)),
       ),
     );
   }

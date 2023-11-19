@@ -141,7 +141,6 @@ class ApproveTransactionPage extends StatelessWidget {
               onPressed: () {},
             )),
           ]),
-          const Gap(33).column,
         ]),
       ),
     );

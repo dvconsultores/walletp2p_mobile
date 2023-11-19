@@ -6,7 +6,8 @@ mixin Variables {
   static const requestTiming = 10;
   // * Sizing
   static const mSize = Size(390, 844);
-  static const paddingScaffold = EdgeInsets.only(left: 36, right: 36, top: 40);
-
+  static const paddingScaffold =
+      EdgeInsets.only(left: 36, right: 36, top: 40, bottom: 20);
+  static const double gapWithFooter = 5;
   static const double headerButtonSize = 31;
 }

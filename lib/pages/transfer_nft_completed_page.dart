@@ -107,8 +107,6 @@ class TransferNftCompletedPage extends StatelessWidget {
           ),
           const Gap(23).column,
           Button(text: "WALLET", onPressed: () {}),
-          const Gap(17).column,
-          const Gap(33).column,
         ]),
       ),
     );

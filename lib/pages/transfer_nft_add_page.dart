@@ -56,7 +56,7 @@ class TransferNftAddPage extends StatelessWidget {
                 Navigator.of(context).pushReplacement(MaterialPageRoute(
               builder: (context) => const TransferNftCompletedPage(),
             )),
-          ),
+          )
         ]),
       ),
     );

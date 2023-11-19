@@ -58,6 +58,7 @@ class _SendDetailsPageState extends State<SendDetailsPage> {
     return AppScaffold(
       child: ScaffoldBody(
         bgImgTop: -70,
+        scrollable: true,
         body: Column(children: [
           const AppHeader(),
           const Gap(134).column,
@@ -110,8 +111,9 @@ class _SendDetailsPageState extends State<SendDetailsPage> {
             child: Text("COMMON PAYEE", style: titleStyle),
           ),
           const Gap(12).column,
-          Expanded(
-              child: ListView.separated(
+          ListView.separated(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
             itemCount: listCommonPayee.length,
             itemBuilder: (context, index) {
               final item = listCommonPayee[index];
@@ -152,8 +154,7 @@ class _SendDetailsPageState extends State<SendDetailsPage> {
               ]);
             },
             separatorBuilder: (context, index) => const Gap(12).column,
-          )),
-          const Gap(33).column
+          ),
         ]),
       ),
     );

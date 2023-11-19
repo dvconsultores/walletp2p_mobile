@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
+import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/custom_card.dart';
@@ -225,8 +226,10 @@ class _AccountDetailsPageState extends State<AccountDetailsPage> {
             context.goNamed("login");
           },
         ),
-        const AppFooter(padding: EdgeInsets.only(top: 24, bottom: 33))
+        const Gap(10).column
       ]),
+      footer: const AppFooter(
+          padding: EdgeInsets.only(top: Variables.gapWithFooter)),
     ));
   }
 }

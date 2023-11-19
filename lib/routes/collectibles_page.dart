@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
+import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/button_aspect.dart';
@@ -30,6 +31,7 @@ class _CollectiblesPageState extends State<CollectiblesPage> {
     return AppScaffold(
       child: ScaffoldBody(
         bgImgTop: -70,
+        scrollable: true,
         body: Column(children: [
           AppHeader(
             showOptions: true,
@@ -113,27 +115,28 @@ class _CollectiblesPageState extends State<CollectiblesPage> {
                 ))
           ]),
           const Gap(17).column,
-          Expanded(
-            child: GridView.count(
-                crossAxisCount: 3,
-                crossAxisSpacing: 16,
-                mainAxisSpacing: 17,
-                children: collectibles
-                    .map((collectible) => Button.iconVariant(
-                          size: 94,
-                          icon: collectible.hasValue
-                              ? Image.asset(collectible!)
-                              : null,
-                          borderSide:
-                              const BorderSide(color: Colors.white, width: 2),
-                          bgColor: ThemeApp.colors(context).primary,
-                          onPressed: () =>
-                              context.pushNamed("collectibleDetails"),
-                        ))
-                    .toList()),
-          ),
-          const AppFooter(padding: EdgeInsets.only(top: 33, bottom: 33)),
+          GridView.count(
+              physics: const NeverScrollableScrollPhysics(),
+              crossAxisCount: 3,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 17,
+              shrinkWrap: true,
+              children: collectibles
+                  .map((collectible) => Button.iconVariant(
+                        size: 94,
+                        icon: collectible.hasValue
+                            ? Image.asset(collectible!)
+                            : null,
+                        borderSide:
+                            const BorderSide(color: Colors.white, width: 2),
+                        bgColor: ThemeApp.colors(context).primary,
+                        onPressed: () =>
+                            context.pushNamed("collectibleDetails"),
+                      ))
+                  .toList()),
         ]),
+        footer: const AppFooter(
+            padding: EdgeInsets.only(top: Variables.gapWithFooter)),
       ),
     );
   }

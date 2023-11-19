@@ -76,7 +76,6 @@ class TransferNftPage extends StatelessWidget {
               )),
             )),
           ]),
-          const Gap(33).column
         ]),
       ),
     );

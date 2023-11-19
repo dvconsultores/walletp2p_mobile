@@ -13,6 +13,7 @@ class PassphraseSigInPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppScaffold(
       child: ScaffoldBody(
+        scrollable: true,
         body: Column(children: [
           const AppHeader(
             width: 284,
@@ -23,28 +24,27 @@ class PassphraseSigInPage extends StatelessWidget {
             descExpanded: true,
           ),
           const Gap(33).column,
-          Expanded(
-            child: ListView.separated(
-              itemBuilder: (context, index) => InputField.sizedBox(
-                  height: 45,
-                  hintText: "ENTER WORD #${index + 1}",
-                  hintStyle: TextStyle(
-                    fontSize: 10,
-                    color: ThemeApp.colors(context).text,
-                    letterSpacing: 3.9,
-                    fontWeight: FontWeight.w700,
-                    fontFamily: FontFamily.karla("700"),
-                  )),
-              separatorBuilder: (context, index) => const Gap(19).column,
-              itemCount: 12,
-            ),
+          ListView.separated(
+            physics: const NeverScrollableScrollPhysics(),
+            shrinkWrap: true,
+            itemBuilder: (context, index) => InputField.sizedBox(
+                height: 45,
+                hintText: "ENTER WORD #${index + 1}",
+                hintStyle: TextStyle(
+                  fontSize: 10,
+                  color: ThemeApp.colors(context).text,
+                  letterSpacing: 3.9,
+                  fontWeight: FontWeight.w700,
+                  fontFamily: FontFamily.karla("700"),
+                )),
+            separatorBuilder: (context, index) => const Gap(19).column,
+            itemCount: 12,
           ),
           const Gap(33).column,
           Button(
             text: "CONTINUE",
             onPressed: () {},
           ),
-          const Gap(40).column,
         ]),
       ),
     );

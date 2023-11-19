@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
+import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/custom_card.dart';
@@ -68,19 +69,19 @@ class PickUsernamePage extends StatelessWidget {
                       ),
                 )),
               ])),
-          const Gap(324).column,
-          AppFooter(
-            child: (context, ts, ts2, ts3) => Text.rich(TextSpan(children: [
-              TextSpan(text: "NEED HELP? ", style: ts2),
-              TextSpan(
-                  text: "SUPPORT",
-                  recognizer: TapAndPanGestureRecognizer()
-                    ..onTapDown = (_) => onTapSupport,
-                  style:
-                      ts3?.copyWith(color: ThemeApp.colors(context).primary)),
-            ])),
-          ),
+          // const Gap(324).column,
         ]),
+        footer: AppFooter(
+          padding: const EdgeInsets.only(top: Variables.gapWithFooter),
+          child: (context, ts, ts2, ts3) => Text.rich(TextSpan(children: [
+            TextSpan(text: "NEED HELP? ", style: ts2),
+            TextSpan(
+                text: "SUPPORT",
+                recognizer: TapAndPanGestureRecognizer()
+                  ..onTapDown = (_) => onTapSupport,
+                style: ts3?.copyWith(color: ThemeApp.colors(context).primary)),
+          ])),
+        ),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/general/variables.dart';
+import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/utils/helper_widgets/responsive_layout.dart';
 
 // * Custom background styled
@@ -11,10 +12,12 @@ class _BackgroundStyled extends StatelessWidget {
     required this.color,
     this.gradient,
     this.filterWidget,
+    this.showBgDots = false,
   });
   final Color? color;
   final Gradient? gradient;
   final Positioned? filterWidget;
+  final bool showBgDots;
   final Widget child;
 
   @override
@@ -42,6 +45,11 @@ class _BackgroundStyled extends StatelessWidget {
                   : null,
             )),
       ),
+      if (showBgDots)
+        Positioned.fill(
+          child: Image.asset('assets/images/bg-dots.png',
+              height: Variables.mSize.height, fit: BoxFit.cover),
+        ),
       if (filterWidget != null) filterWidget!,
       Positioned.fill(child: child),
     ]);
@@ -52,23 +60,21 @@ class _BackgroundStyled extends StatelessWidget {
 class _BodyBackgroundStyled extends StatelessWidget {
   const _BodyBackgroundStyled({
     required this.child,
-    this.color,
+    this.footer,
     this.padding,
     required this.scrollable,
     required this.bgImgTop,
     required this.bgImg,
-    required this.showBgDots,
     required this.bgImgLeft,
     required this.heroTag,
   });
-  final EdgeInsetsGeometry? padding;
-  final Color? color;
+  final EdgeInsets? padding;
   final bool scrollable;
   final String? bgImg;
   final double? bgImgTop;
   final double? bgImgLeft;
-  final bool showBgDots;
   final String? heroTag;
+  final Widget? footer;
   final Widget child;
 
   @override
@@ -78,16 +84,7 @@ class _BodyBackgroundStyled extends StatelessWidget {
             fit: BoxFit.cover)
         : Image.asset(bgImg ?? 'assets/images/circle.png', fit: BoxFit.cover);
 
-    final widget = Stack(alignment: Alignment.topCenter, children: [
-      if (showBgDots)
-        Positioned(
-          top: 0,
-          left: 0,
-          right: 0,
-          child: Image.asset('assets/images/bg-dots.png',
-              height: Variables.mSize.height, fit: BoxFit.cover),
-        ),
-
+    final body = Stack(alignment: Alignment.topCenter, children: [
       // centered image
       Positioned(
         top: bgImgTop ?? 109,
@@ -99,14 +96,29 @@ class _BodyBackgroundStyled extends StatelessWidget {
               )
             : bgImgWidget,
       ),
-      Container(
-        color: color,
-        padding: padding ?? Variables.paddingScaffold,
+      Padding(
+        padding: EdgeInsets.only(
+          top: padding?.top ?? Variables.paddingScaffold.top,
+          left: padding?.left ?? Variables.paddingScaffold.left,
+          right: padding?.right ?? Variables.paddingScaffold.right,
+          bottom: footer == null
+              ? padding?.bottom ?? Variables.paddingScaffold.bottom
+              : 0,
+        ),
         child: child,
       ),
     ]);
 
-    return scrollable ? SingleChildScrollView(child: widget) : widget;
+    final scrollableBody =
+        scrollable ? SingleChildScrollView(child: body) : body;
+
+    return footer != null
+        ? Column(children: [
+            Expanded(child: scrollableBody),
+            footer!,
+            Gap(padding?.bottom ?? Variables.paddingScaffold.bottom).column
+          ])
+        : scrollableBody;
   }
 }
 
@@ -122,6 +134,7 @@ class AppScaffold extends StatelessWidget {
     this.floatingActionButton,
     this.gradient,
     this.color,
+    this.showBgDots = false,
   });
   final Widget? drawer;
   final PreferredSizeWidget? appBar;
@@ -131,6 +144,7 @@ class AppScaffold extends StatelessWidget {
   final Widget? floatingActionButton;
   final Gradient? gradient;
   final Color? color;
+  final bool showBgDots;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -140,6 +154,7 @@ class AppScaffold extends StatelessWidget {
           color: color,
           gradient: gradient,
           filterWidget: filterWidget,
+          showBgDots: showBgDots,
           child: child,
         ),
         bottomNavigationBar: bottomNavigationBar,
@@ -159,6 +174,7 @@ class AppScaffold extends StatelessWidget {
     Widget? floatingActionButton,
     Gradient? gradient,
     Color? color,
+    bool showBgDots = false,
   }) =>
       _AppScaffoldResponsive(
         drawer: drawer,
@@ -171,6 +187,7 @@ class AppScaffold extends StatelessWidget {
         bottomNavigationBar: bottomNavigationBar,
         floatingActionButton: floatingActionButton,
         color: color,
+        showBgDots: showBgDots,
         gradient: gradient,
       );
 }
@@ -188,6 +205,7 @@ class _AppScaffoldResponsive extends StatelessWidget {
     this.bottomNavigationBar,
     this.floatingActionButton,
     this.gradient,
+    this.showBgDots = false,
     required this.color,
   });
   final Widget? Function(BuildContext context, BoxConstraints constraints)?
@@ -204,6 +222,7 @@ class _AppScaffoldResponsive extends StatelessWidget {
   final Widget? floatingActionButton;
   final Gradient? gradient;
   final Color? color;
+  final bool showBgDots;
 
   @override
   Widget build(BuildContext context) => Scaffold(
@@ -213,6 +232,7 @@ class _AppScaffoldResponsive extends StatelessWidget {
           color: color,
           gradient: gradient,
           filterWidget: filterWidget,
+          showBgDots: showBgDots,
           child: ResponsiveLayout(
             mobile: mobile,
             tablet: tablet,
@@ -231,34 +251,31 @@ class ScaffoldBody extends StatelessWidget {
     super.key,
     required this.body,
     this.padding,
-    this.color,
     this.scrollable = false,
     this.bgImg,
     this.bgImgTop,
-    this.showBgDots = false,
     this.bgImgLeft,
     this.heroTag,
+    this.footer,
   });
   final Widget body;
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsets? padding;
   final bool scrollable;
-  final Color? color;
   final String? bgImg;
   final double? bgImgTop;
-  final bool showBgDots;
   final double? bgImgLeft;
   final String? heroTag;
+  final Widget? footer;
 
   @override
   Widget build(BuildContext context) => _BodyBackgroundStyled(
-        color: color,
         padding: padding,
         scrollable: scrollable,
         bgImg: bgImg,
         bgImgTop: bgImgTop,
-        showBgDots: showBgDots,
         bgImgLeft: bgImgLeft,
         heroTag: heroTag,
+        footer: footer,
         child: body,
       );
 
@@ -268,17 +285,15 @@ class ScaffoldBody extends StatelessWidget {
     Widget? Function(BuildContext context, BoxConstraints constraints)? tablet,
     Widget? Function(BuildContext context, BoxConstraints constraints)? desktop,
     Widget? Function(BuildContext context, BoxConstraints constraints)? tv,
-    EdgeInsetsGeometry? padding,
+    EdgeInsets? padding,
     bool scrollable = false,
-    Color? color,
     String? bgImg,
     double? bgImgTop,
-    bool showBgDots = false,
     double? bgImgLeft,
     String? heroTag,
+    Widget? footer,
   }) =>
       _ScaffoldBodyResponsive(
-        color: color,
         padding: padding,
         mobile: mobile,
         desktop: desktop,
@@ -287,9 +302,9 @@ class ScaffoldBody extends StatelessWidget {
         scrollable: scrollable,
         bgImg: bgImg,
         bgImgTop: bgImgTop,
-        showBgDots: showBgDots,
         bgImgLeft: bgImgLeft,
         heroTag: heroTag,
+        footer: footer,
       );
 }
 
@@ -297,7 +312,6 @@ class ScaffoldBody extends StatelessWidget {
 class _ScaffoldBodyResponsive extends StatelessWidget {
   const _ScaffoldBodyResponsive({
     this.padding,
-    this.color,
     this.mobile,
     this.tablet,
     this.desktop,
@@ -305,9 +319,9 @@ class _ScaffoldBodyResponsive extends StatelessWidget {
     required this.scrollable,
     required this.bgImg,
     required this.bgImgTop,
-    required this.showBgDots,
     required this.bgImgLeft,
     required this.heroTag,
+    this.footer,
   });
   final Widget? Function(BuildContext context, BoxConstraints constraints)?
       mobile;
@@ -316,25 +330,23 @@ class _ScaffoldBodyResponsive extends StatelessWidget {
   final Widget? Function(BuildContext context, BoxConstraints constraints)?
       desktop;
   final Widget? Function(BuildContext context, BoxConstraints constraints)? tv;
-  final EdgeInsetsGeometry? padding;
+  final EdgeInsets? padding;
   final bool scrollable;
-  final Color? color;
   final String? bgImg;
   final double? bgImgTop;
-  final bool showBgDots;
   final double? bgImgLeft;
   final String? heroTag;
+  final Widget? footer;
 
   @override
   Widget build(BuildContext context) => _BodyBackgroundStyled(
-        color: color,
         padding: padding,
         scrollable: scrollable,
         bgImg: bgImg,
         bgImgTop: bgImgTop,
         bgImgLeft: bgImgLeft,
-        showBgDots: showBgDots,
         heroTag: heroTag,
+        footer: footer,
         child: ResponsiveLayout(
           mobile: mobile,
           tablet: tablet,

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/pages/email_verification_page.dart';
 import 'package:wallet_p2p/repositories/auth_api.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
+import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/footer.dart';
@@ -28,9 +29,9 @@ class _LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
+      showBgDots: true,
       child: ScaffoldBody(
         bgImg: 'assets/images/circle-main.png',
-        showBgDots: true,
         scrollable: true,
         body: Column(children: [
           const AppHeader(
@@ -82,11 +83,11 @@ class _LogInPageState extends State<LogInPage> {
                 BorderSide(color: ThemeApp.colors(context).text, width: 1),
             onPressed: () => context.goNamed("passphraseSignup"),
           ),
-          const Gap(22).column,
-          AppFooter(
-              child: (context, ts, ts2, ts3) =>
-                  Text("PRIVACY POLICY", style: ts3)),
         ]),
+        footer: AppFooter(
+            padding: const EdgeInsets.only(top: Variables.gapWithFooter),
+            child: (context, ts, ts2, ts3) =>
+                Text("PRIVACY POLICY", style: ts3)),
       ),
     );
   }

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
+import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button_aspect.dart';
 import 'package:wallet_p2p/widgets/button.dart';
@@ -31,6 +32,7 @@ class PassphraseSignUpPage extends StatelessWidget {
 
     return AppScaffold(
       child: ScaffoldBody(
+        scrollable: true,
         body: Column(children: [
           const AppHeader(
             width: 284,
@@ -100,30 +102,30 @@ class PassphraseSignUpPage extends StatelessWidget {
                     .join(" ")
                     .copyToClipboard(message: "Passphrase copied!")),
           ]),
-          AppFooter(
-            padding: const EdgeInsets.only(top: 49, bottom: 64),
-            child: (context, ts, ts2, ts3) => Text.rich(
-              TextSpan(children: [
-                TextSpan(
-                    text: "ALREADY HAVE A PASSPHRASE? ",
-                    style: ts3?.copyWith(
-                      fontWeight: FontWeight.w400,
-                      fontFamily: FontFamily.karla("400"),
-                    )),
-                TextSpan(
-                    text: "SIGN IN",
-                    recognizer: TapAndPanGestureRecognizer()
-                      ..onTapDown =
-                          (_) => context.pushNamed("passphraseSignin"),
-                    style: ts3?.copyWith(
-                      color: ThemeApp.colors(context).primary,
-                      fontWeight: FontWeight.w700,
-                      fontFamily: FontFamily.karla("700"),
-                    )),
-              ]),
-            ),
-          ),
+          const Gap(10).column
         ]),
+        footer: AppFooter(
+          padding: const EdgeInsets.only(top: Variables.gapWithFooter),
+          child: (context, ts, ts2, ts3) => Text.rich(
+            TextSpan(children: [
+              TextSpan(
+                  text: "ALREADY HAVE A PASSPHRASE? ",
+                  style: ts3?.copyWith(
+                    fontWeight: FontWeight.w400,
+                    fontFamily: FontFamily.karla("400"),
+                  )),
+              TextSpan(
+                  text: "SIGN IN",
+                  recognizer: TapAndPanGestureRecognizer()
+                    ..onTapDown = (_) => context.pushNamed("passphraseSignin"),
+                  style: ts3?.copyWith(
+                    color: ThemeApp.colors(context).primary,
+                    fontWeight: FontWeight.w700,
+                    fontFamily: FontFamily.karla("700"),
+                  )),
+            ]),
+          ),
+        ),
       ),
     );
   }
