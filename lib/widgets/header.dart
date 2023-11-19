@@ -32,6 +32,10 @@ class AppHeader extends StatelessWidget {
     this.leadingWidget,
     this.traillingWidget,
     this.showOptions = false,
+    this.middleText,
+    this.middleTextAlign,
+    this.middleTextPaddingLeft,
+    this.middleTextPaddingRight,
   });
   final bool showArrow;
   final double? width;
@@ -51,6 +55,10 @@ class AppHeader extends StatelessWidget {
   final Widget? leadingWidget;
   final Widget? traillingWidget;
   final bool showOptions;
+  final String? middleText;
+  final AlignmentGeometry? middleTextAlign;
+  final double? middleTextPaddingLeft;
+  final double? middleTextPaddingRight;
 
   @override
   Widget build(BuildContext context) {
@@ -137,6 +145,10 @@ class AppHeader extends StatelessWidget {
             descTip: descTip,
             descTextAlign: descTextAlign,
             descExpanded: descExpanded,
+            middleText: middleText,
+            middleTextAlign: middleTextAlign,
+            middleTextPaddingLeft: middleTextPaddingLeft,
+            middleTextPaddingRight: middleTextPaddingRight,
           ),
         ]
       ]),
@@ -162,6 +174,10 @@ class CustomTitle extends StatelessWidget {
     this.descTip,
     this.descTextAlign = TextAlign.center,
     this.descExpanded = false,
+    this.middleText,
+    this.middleTextAlign,
+    this.middleTextPaddingLeft,
+    this.middleTextPaddingRight,
   });
 
   final double? width;
@@ -179,6 +195,10 @@ class CustomTitle extends StatelessWidget {
   final TextAlign descTextAlign;
   final String? descTip;
   final bool descExpanded;
+  final String? middleText;
+  final AlignmentGeometry? middleTextAlign;
+  final double? middleTextPaddingLeft;
+  final double? middleTextPaddingRight;
 
   @override
   Widget build(BuildContext context) {
@@ -205,6 +225,15 @@ class CustomTitle extends StatelessWidget {
                       left: topTextPaddingLeft ?? 0,
                       right: topTextPaddingRight ?? 0),
                   child: Text(topText!, style: bigTextStyle),
+                )),
+          if (middleText.hasValue)
+            Align(
+                alignment: middleTextAlign ?? Alignment.center,
+                child: Padding(
+                  padding: EdgeInsets.only(
+                      left: middleTextPaddingLeft ?? 0,
+                      right: middleTextPaddingRight ?? 0),
+                  child: Text(middleText!, style: bigTextStyle),
                 )),
           if (bottomText.hasValue)
             Align(

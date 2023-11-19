@@ -2,6 +2,8 @@ import 'package:collection/collection.dart';
 import 'package:flutter/material.dart';
 import 'package:wallet_p2p/main.dart';
 import 'package:wallet_p2p/routes/account_details_page.dart';
+import 'package:wallet_p2p/routes/collectible_details_page.dart';
+import 'package:wallet_p2p/routes/collectibles_page.dart';
 import 'package:wallet_p2p/routes/connect_with_near_page.dart';
 import 'package:wallet_p2p/routes/explore_page.dart';
 import 'package:wallet_p2p/routes/home_page.dart';
@@ -16,6 +18,7 @@ import 'package:wallet_p2p/routes/send_details_page.dart';
 import 'package:wallet_p2p/routes/send_page.dart';
 import 'package:wallet_p2p/routes/send_qr_page.dart';
 import 'package:wallet_p2p/routes/staking_page.dart';
+import 'package:wallet_p2p/routes/transfer_nft_page.dart';
 import 'package:wallet_p2p/utils/helper_widgets/custom_transition_wrapper.dart';
 import 'package:wallet_p2p/utils/helper_widgets/double_back_to_close_widget.dart';
 import 'package:wallet_p2p/utils/services/local_data/secure_storage_service.dart';
@@ -141,6 +144,24 @@ final GoRouter router = GoRouter(
               path: 'send-qr',
               name: 'sendQr',
               pageBuilder: (context, state) => _pageBuilder(const SendQrPage()),
+            ),
+            GoRoute(
+              path: 'collectibles',
+              name: 'collectibles',
+              pageBuilder: (context, state) =>
+                  _pageBuilder(const CollectiblesPage()),
+            ),
+            GoRoute(
+              path: 'collectible-details',
+              name: 'collectibleDetails',
+              pageBuilder: (context, state) =>
+                  _pageBuilder(const CollectibleDetailsPage()),
+            ),
+            GoRoute(
+              path: 'transfer-nft',
+              name: 'transferNft',
+              pageBuilder: (context, state) =>
+                  _pageBuilder(const TransferNftPage()),
             ),
           ]),
     ]);

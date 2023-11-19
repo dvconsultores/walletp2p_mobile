@@ -21,12 +21,12 @@ class HomePage extends StatelessWidget {
       {
         "label": "SEND",
         "icon": const Icon(Icons.arrow_upward_rounded),
-        "action": () => context.goNamed("send"),
+        "action": () => context.pushNamed("send"),
       },
       {
         "label": "RECEIVE",
         "icon": const Icon(Icons.arrow_downward_rounded),
-        "action": () => context.goNamed("sendQr"),
+        "action": () => context.pushNamed("sendQr"),
       },
       {
         "label": "TOP UP",
@@ -91,7 +91,7 @@ class HomePage extends StatelessWidget {
               Expanded(
                   child: Button(
                 text: "COLLECTIBLES",
-                onPressed: () {},
+                onPressed: () => context.pushNamed("collectibles"),
               )),
             ]),
             const Gap(64).column,
@@ -222,7 +222,7 @@ class HomePage extends StatelessWidget {
                           child: Button(
                             width: 176,
                             text: "EXPLORE APPS",
-                            onPressed: () => context.goNamed("explore"),
+                            onPressed: () => context.pushNamed("explore"),
                           )),
                     ),
                   ]),

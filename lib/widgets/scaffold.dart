@@ -6,8 +6,15 @@ import 'package:wallet_p2p/utils/helper_widgets/responsive_layout.dart';
 
 // * Custom background styled
 class _BackgroundStyled extends StatelessWidget {
-  const _BackgroundStyled({required this.child, required this.color});
+  const _BackgroundStyled({
+    required this.child,
+    required this.color,
+    this.gradient,
+    this.filterWidget,
+  });
   final Color? color;
+  final Gradient? gradient;
+  final Positioned? filterWidget;
   final Widget child;
 
   @override
@@ -20,20 +27,22 @@ class _BackgroundStyled extends StatelessWidget {
             decoration: BoxDecoration(
               color: color,
               gradient: color == null
-                  ? const SweepGradient(
-                      center: Alignment.center,
-                      transform: GradientRotation(-10.5),
-                      colors: [
-                        Color.fromRGBO(255, 255, 255, 0.53),
-                        Color.fromRGBO(220, 220, 220, 0.48),
-                        Color.fromRGBO(36, 200, 255, 0.35),
-                        Color.fromRGBO(246, 246, 247, 1),
-                      ],
-                      stops: [0, 0.333, 0.666, 1],
-                    )
+                  ? gradient ??
+                      const SweepGradient(
+                        center: Alignment.center,
+                        transform: GradientRotation(-10.5),
+                        colors: [
+                          Color.fromRGBO(255, 255, 255, 0.53),
+                          Color.fromRGBO(220, 220, 220, 0.48),
+                          Color.fromRGBO(36, 200, 255, 0.35),
+                          Color.fromRGBO(246, 246, 247, 1),
+                        ],
+                        stops: [0, 0.333, 0.666, 1],
+                      )
                   : null,
             )),
       ),
+      if (filterWidget != null) filterWidget!,
       Positioned.fill(child: child),
     ]);
   }
@@ -106,17 +115,21 @@ class AppScaffold extends StatelessWidget {
   const AppScaffold({
     super.key,
     required this.child,
+    this.filterWidget,
     this.drawer,
     this.appBar,
     this.bottomNavigationBar,
     this.floatingActionButton,
+    this.gradient,
     this.color,
   });
   final Widget? drawer;
   final PreferredSizeWidget? appBar;
   final Widget child;
+  final Positioned? filterWidget;
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
+  final Gradient? gradient;
   final Color? color;
 
   @override
@@ -125,6 +138,8 @@ class AppScaffold extends StatelessWidget {
         appBar: appBar,
         body: _BackgroundStyled(
           color: color,
+          gradient: gradient,
+          filterWidget: filterWidget,
           child: child,
         ),
         bottomNavigationBar: bottomNavigationBar,
@@ -137,10 +152,12 @@ class AppScaffold extends StatelessWidget {
     Widget? Function(BuildContext context, BoxConstraints constraints)? tablet,
     Widget? Function(BuildContext context, BoxConstraints constraints)? desktop,
     Widget? Function(BuildContext context, BoxConstraints constraints)? tv,
+    Positioned? filterWidget,
     Widget? drawer,
     PreferredSizeWidget? appBar,
     Widget? bottomNavigationBar,
     Widget? floatingActionButton,
+    Gradient? gradient,
     Color? color,
   }) =>
       _AppScaffoldResponsive(
@@ -150,9 +167,11 @@ class AppScaffold extends StatelessWidget {
         tablet: tablet,
         desktop: desktop,
         tv: tv,
+        filterWidget: filterWidget,
         bottomNavigationBar: bottomNavigationBar,
         floatingActionButton: floatingActionButton,
         color: color,
+        gradient: gradient,
       );
 }
 
@@ -165,8 +184,10 @@ class _AppScaffoldResponsive extends StatelessWidget {
     this.tablet,
     this.desktop,
     this.tv,
+    this.filterWidget,
     this.bottomNavigationBar,
     this.floatingActionButton,
+    this.gradient,
     required this.color,
   });
   final Widget? Function(BuildContext context, BoxConstraints constraints)?
@@ -176,10 +197,12 @@ class _AppScaffoldResponsive extends StatelessWidget {
   final Widget? Function(BuildContext context, BoxConstraints constraints)?
       desktop;
   final Widget? Function(BuildContext context, BoxConstraints constraints)? tv;
+  final Positioned? filterWidget;
   final Widget? drawer;
   final PreferredSizeWidget? appBar;
   final Widget? bottomNavigationBar;
   final Widget? floatingActionButton;
+  final Gradient? gradient;
   final Color? color;
 
   @override
@@ -188,6 +211,8 @@ class _AppScaffoldResponsive extends StatelessWidget {
         appBar: appBar,
         body: _BackgroundStyled(
           color: color,
+          gradient: gradient,
+          filterWidget: filterWidget,
           child: ResponsiveLayout(
             mobile: mobile,
             tablet: tablet,
