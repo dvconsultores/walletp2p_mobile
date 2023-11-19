@@ -21,32 +21,32 @@ class _ExplorePageState extends State<ExplorePage> {
 
   final tokenList = [
     {
-      "icon": Image.asset("assets/logos/ref-finance.png"),
+      "icon": Image.asset("assets/miscellaneous/ref-finance.png"),
       "name": "REF FINANCE",
       "color": const Color.fromRGBO(0, 0, 0, 1),
     },
     {
-      "icon": Image.asset("assets/logos/paras.png"),
+      "icon": Image.asset("assets/miscellaneous/paras.png"),
       "name": "PARAS",
       "color": const Color.fromRGBO(1, 0, 190, 1),
     },
     {
-      "icon": Image.asset("assets/logos/burrow.png"),
+      "icon": Image.asset("assets/miscellaneous/burrow.png"),
       "name": "BURROW",
       "color": const Color.fromRGBO(89, 74, 66, 1),
     },
     {
-      "icon": Image.asset("assets/logos/meta-pool.png"),
+      "icon": Image.asset("assets/miscellaneous/meta-pool.png"),
       "name": "META POOL",
       "color": const Color.fromRGBO(116, 93, 233, 1),
     },
     {
-      "icon": Image.asset("assets/logos/astro-dao.png"),
+      "icon": Image.asset("assets/miscellaneous/astro-dao.png"),
       "name": "ASTRO DAO",
       "color": const Color.fromRGBO(96, 55, 207, 1),
     },
     {
-      "icon": Image.asset("assets/logos/rainbow-bridge.png"),
+      "icon": Image.asset("assets/miscellaneous/rainbow-bridge.png"),
       "name": "RAINBOW BRIDGE",
       "color": const Color.fromRGBO(255, 255, 255, 1),
     },
@@ -61,28 +61,28 @@ class _ExplorePageState extends State<ExplorePage> {
 
   final projectList = [
     {
-      "icon": "assets/logos/ref-finance.png",
+      "icon": "assets/miscellaneous/ref-finance.png",
       "color": const Color.fromRGBO(0, 0, 0, 1),
       "type": "AMM DEX",
       "name": "REF FINANCE",
       "desc": "Multi-purpose DeFi plataform built on NEAR Protocol",
     },
     {
-      "icon": "assets/logos/rainbow-bridge.png",
+      "icon": "assets/miscellaneous/rainbow-bridge.png",
       "color": const Color.fromRGBO(225, 225, 225, 1),
       "type": "Cross-chain Bridge",
       "name": "RAINBOW BRIDGE",
       "desc": "Transfer tokens between Ethereum and NEAR",
     },
     {
-      "icon": "assets/logos/ref-finance.png",
+      "icon": "assets/miscellaneous/ref-finance.png",
       "color": const Color.fromRGBO(0, 0, 0, 1),
       "type": "AMM DEX",
       "name": "REF FINANCE",
       "desc": "Multi-purpose DeFi plataform built on NEAR Protocol",
     },
     {
-      "icon": "assets/logos/rainbow-bridge.png",
+      "icon": "assets/miscellaneous/rainbow-bridge.png",
       "color": const Color.fromRGBO(225, 225, 225, 1),
       "type": "Cross-chain Bridge",
       "name": "RAINBOW BRIDGE",
