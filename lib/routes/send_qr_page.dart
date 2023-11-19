@@ -1,3 +1,4 @@
+import 'package:custom_qr_generator_2/custom_qr_generator.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
@@ -9,8 +10,15 @@ import 'package:wallet_p2p/widgets/footer.dart';
 import 'package:wallet_p2p/widgets/header.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
 
-class SendQrPage extends StatelessWidget {
+class SendQrPage extends StatefulWidget {
   const SendQrPage({super.key});
+
+  @override
+  State<SendQrPage> createState() => _SendQrPageState();
+}
+
+class _SendQrPageState extends State<SendQrPage> {
+  final accountId = "beesimple.near";
 
   @override
   Widget build(BuildContext context) {
@@ -24,8 +32,6 @@ class SendQrPage extends StatelessWidget {
     return AppScaffold(
       child: ScaffoldBody(
         bgImgTop: -70,
-        // TODO fix this image
-        bgImg: "assets/images/circle-qr.png",
         body: Column(children: [
           const AppHeader(
             showOptions: true,
@@ -46,14 +52,40 @@ class SendQrPage extends StatelessWidget {
               onPressed: () {},
             )),
           ]),
-          const Gap(227).column,
+          const Gap(12).column,
+          CustomPaint(
+            painter: QrPainter(
+                data: accountId,
+                options: QrOptions(
+                  shapes: const QrShapes(
+                    lightPixel: QrPixelShapeRoundCorners(cornerFraction: 1),
+                    darkPixel: QrPixelShapeRoundCorners(cornerFraction: 1),
+                    frame: QrFrameShapeRoundCorners(cornerFraction: 1),
+                    ball: QrBallShapeRoundCorners(cornerFraction: 1),
+                  ),
+                  padding: .1,
+                  colors: QrColors(
+                    background: const QrColorSolid(Colors.transparent),
+                    light: QrColorSolid(ThemeApp.colors(context).text),
+                    dark: QrColorSolid(ThemeApp.colors(context).text),
+                  ),
+                )),
+            child: Container(
+                width: 192,
+                height: 192,
+                decoration: BoxDecoration(
+                  borderRadius: const BorderRadius.all(Radius.circular(20)),
+                  border: Border.all(width: 5),
+                )),
+          ),
+          const Gap(23).column,
           Align(
             alignment: Alignment.centerLeft,
             child: Text("ACCOUNT ID", style: titleStyle),
           ),
           const Gap(6).column,
           ButtonAspect.variant(
-            text: "beesimple.near",
+            text: accountId,
             textStyle: titleStyle,
             padding: const EdgeInsets.only(left: 23, right: 8),
             bgColor: ThemeApp.colors(context).secondary,
