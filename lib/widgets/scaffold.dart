@@ -87,7 +87,7 @@ class _BodyBackgroundStyled extends StatelessWidget {
     final body = Stack(alignment: Alignment.topCenter, children: [
       // centered image
       Positioned(
-        top: bgImgTop ?? 109,
+        top: bgImgTop ?? Variables.bgImgTop1,
         left: bgImgLeft,
         child: heroTag.hasValue
             ? Hero(

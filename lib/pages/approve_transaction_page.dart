@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
+import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/button_aspect.dart';
@@ -20,7 +21,7 @@ class ApproveTransactionPage extends StatelessWidget {
 
     return AppScaffold(
       child: ScaffoldBody(
-        bgImgTop: 35,
+        bgImgTop: Variables.bgImgTop3,
         body: Column(children: [
           const AppHeader(
             width: 320,

@@ -34,7 +34,7 @@ class CollectibleDetailsPage extends StatelessWidget {
 
     return AppScaffold(
       child: ScaffoldBody(
-        bgImgTop: -70,
+        bgImgTop: Variables.bgImgTop2,
         scrollable: true,
         padding: EdgeInsets.only(
           left: Variables.paddingScaffold.left,

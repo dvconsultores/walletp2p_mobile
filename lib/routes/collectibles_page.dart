@@ -30,7 +30,7 @@ class _CollectiblesPageState extends State<CollectiblesPage> {
 
     return AppScaffold(
       child: ScaffoldBody(
-        bgImgTop: -70,
+        bgImgTop: Variables.bgImgTop2,
         scrollable: true,
         body: Column(children: [
           AppHeader(

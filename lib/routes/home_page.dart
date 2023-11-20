@@ -72,7 +72,7 @@ class HomePage extends StatelessWidget {
 
     return AppScaffold(
       child: ScaffoldBody(
-          bgImgTop: -70,
+          bgImgTop: Variables.bgImgTop2,
           scrollable: true,
           padding: const EdgeInsets.all(0),
           body: Column(children: [
@@ -93,9 +93,7 @@ class HomePage extends StatelessWidget {
                     Expanded(
                         child: Button.variant(
                       text: "BALANCES",
-                      onPressed: () {
-                        // TODO just for testing some routes
-                      },
+                      onPressed: () {},
                     )),
                     const Gap(12).row,
                     Expanded(

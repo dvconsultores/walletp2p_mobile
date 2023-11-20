@@ -39,7 +39,7 @@ class _SendPageState extends State<SendPage> {
 
     return AppScaffold(
       child: ScaffoldBody(
-        bgImgTop: -70,
+        bgImgTop: Variables.bgImgTop2,
         body: Column(children: [
           Expanded(
             child: SingleChildScrollView(

@@ -25,7 +25,7 @@ class TransferNftAddPage extends StatelessWidget {
             Color(0xFF7C7B7F),
           ]),
       child: ScaffoldBody(
-        bgImgTop: -520,
+        bgImgTop: -500,
         bgImg: "assets/images/circle-transparent.png",
         body: Column(children: [
           Align(

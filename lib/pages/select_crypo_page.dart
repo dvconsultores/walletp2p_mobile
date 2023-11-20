@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_p2p/models/crypto_model.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
+import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/custom_card.dart';
@@ -105,7 +106,7 @@ class _SelectCryptoPageState extends State<SelectCryptoPage> {
 
     return AppScaffold(
       child: ScaffoldBody(
-        bgImgTop: -70,
+        bgImgTop: Variables.bgImgTop2,
         scrollable: true,
         body: Column(children: [
           AppHeader(
