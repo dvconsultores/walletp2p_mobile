@@ -98,6 +98,7 @@ dependencies:
   lottie: ^2.5.0 # ? official animation site https://lottiefiles.com/es/animation/flutter
   dropdown_button2: ^2.3.9
   custom_qr_generator_2: ^0.2.2
+  flutter_gap: ^1.0.0
 
 
 dev_dependencies:

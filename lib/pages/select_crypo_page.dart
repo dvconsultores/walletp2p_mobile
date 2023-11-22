@@ -3,7 +3,7 @@ import 'package:wallet_p2p/models/crypto_model.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/general/variables.dart';
-import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
+import 'package:flutter_gap/flutter_gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/custom_card.dart';
 import 'package:wallet_p2p/widgets/header.dart';

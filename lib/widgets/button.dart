@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_p2p/main.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
-import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
+import 'package:flutter_gap/flutter_gap.dart';
 import 'package:wallet_p2p/widgets/loaders/custom_circular_progress_indicator.dart';
 
 class Button extends StatelessWidget {

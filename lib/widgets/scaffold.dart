@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/general/variables.dart';
-import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
+import 'package:flutter_gap/flutter_gap.dart';
 import 'package:wallet_p2p/utils/helper_widgets/responsive_layout.dart';
 
 // * Custom background styled

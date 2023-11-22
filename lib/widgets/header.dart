@@ -5,7 +5,7 @@ import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
 import 'package:wallet_p2p/utils/general/variables.dart';
 import 'package:wallet_p2p/utils/helper_widgets/custom_transition_wrapper.dart';
-import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
+import 'package:flutter_gap/flutter_gap.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/drawer.dart';
 import 'package:wallet_p2p/widgets/tooltip.dart';

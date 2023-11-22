@@ -25,7 +25,7 @@ mixin FontFamily {
 /// Themes configuration class from app.
 class ThemeApp {
   static Map<ThemeType, ThemeData> get _themes {
-    final ligthTheme = ThemeData.light();
+    final ligthTheme = ThemeData.light(useMaterial3: false);
 
     return {
       // ? ligth

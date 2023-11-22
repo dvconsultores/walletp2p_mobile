@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:wallet_p2p/main.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/extensions/type_extensions.dart';
-import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
+import 'package:flutter_gap/flutter_gap.dart';
 
 class ButtonAspect extends StatelessWidget {
   const ButtonAspect({

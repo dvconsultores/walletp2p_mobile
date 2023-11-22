@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
-import 'package:wallet_p2p/utils/helper_widgets/gap.dart';
+import 'package:flutter_gap/flutter_gap.dart';
 import 'package:wallet_p2p/widgets/account_field.dart';
 import 'package:wallet_p2p/widgets/button.dart';
 import 'package:wallet_p2p/widgets/custom_card.dart';
