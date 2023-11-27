@@ -9,6 +9,7 @@ import 'package:wallet_p2p/routes/explore_page.dart';
 import 'package:wallet_p2p/routes/home_page.dart';
 import 'package:wallet_p2p/routes/limited_permissions_page.dart';
 import 'package:wallet_p2p/routes/log_in_page.dart';
+import 'package:wallet_p2p/routes/passphrase_sign_in_metademocracia_page.dart';
 import 'package:wallet_p2p/routes/passphrase_sign_in_page.dart';
 import 'package:wallet_p2p/routes/passphrase_sign_up_page.dart';
 import 'package:wallet_p2p/routes/passphrase_word_page.dart';
@@ -77,6 +78,12 @@ final GoRouter router = GoRouter(
               name: 'passphraseSignin',
               pageBuilder: (context, state) =>
                   _pageBuilder(const PassphraseSigInPage()),
+            ),
+            GoRoute(
+              path: 'passphrase-signin-metademocracia',
+              name: 'passphraseSigninMetademocracia',
+              pageBuilder: (context, state) =>
+                  _pageBuilder(const PassphraseSigInMetademocraciaPage()),
             ),
             GoRoute(
               path: 'passphrase-word',

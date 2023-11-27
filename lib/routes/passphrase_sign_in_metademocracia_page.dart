@@ -6,8 +6,8 @@ import 'package:wallet_p2p/widgets/header.dart';
 import 'package:wallet_p2p/widgets/input_field.dart';
 import 'package:wallet_p2p/widgets/scaffold.dart';
 
-class PassphraseSigInNewPage extends StatelessWidget {
-  const PassphraseSigInNewPage({super.key});
+class PassphraseSigInMetademocraciaPage extends StatelessWidget {
+  const PassphraseSigInMetademocraciaPage({super.key});
 
   @override
   Widget build(BuildContext context) {

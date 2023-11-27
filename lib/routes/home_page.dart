@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:go_router/go_router.dart';
-import 'package:wallet_p2p/routes/passphrase_sign_in_new_page.dart';
+import 'package:wallet_p2p/routes/passphrase_sign_in_metademocracia_page.dart';
 import 'package:wallet_p2p/utils/config/theme.dart';
 import 'package:wallet_p2p/utils/general/functions.dart';
 import 'package:wallet_p2p/utils/general/variables.dart';
@@ -94,13 +94,7 @@ class HomePage extends StatelessWidget {
                     Expanded(
                         child: Button.variant(
                       text: "BALANCES",
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const PassphraseSigInNewPage()));
-                      },
+                      onPressed: () {},
                     )),
                     const Gap(12).row,
                     Expanded(
